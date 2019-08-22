@@ -1,6 +1,6 @@
 {
   "name": "create-pika-app",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Bootstrap a Preact/Pika/Typescript web application without the hassle!",
   "main": "index.js",
   "scripts": {
@@ -77,7 +77,12 @@
       [
         "@pika/plugin-build-node"
       ],
-      ["@pika/plugin-simple-bin", {"bin": "create-pika-app"}]
+      [
+        "@pika/plugin-simple-bin",
+        {
+          "bin": "create-pika-app"
+        }
+      ]
     ]
   },
   "prettier": {
