@@ -8,7 +8,7 @@ const packageJson = require("../../package.json");
 // const prompts = require('prompts')
 
 let appName;
-let appDirectory = `${process.cwd()}/${appName}`;
+// let appDirectory = `${process.cwd()}/${appName}`
 
 const createPikaApp = () => {
   return new Promise(resolve => {
@@ -26,7 +26,7 @@ const createPikaApp = () => {
   });
 };
 
-const cdIntoNewApp = () => {
+const cdIntoNewApp = appName => {
   return new Promise(resolve => {
     shell.exec(`cd ${appName}`, () => {
       resolve();
@@ -34,34 +34,20 @@ const cdIntoNewApp = () => {
   });
 };
 
-const copyTemplates = () => {
+const copyTemplates = appName => {
   var getDirectories = function(src, callback) {
     glob(src + "/**/*", callback);
   };
   let globPath;
-  // fs.access(
-  //   `${appDirectory}/node_modules/create-pika-app/assets/templates/README.md`,
-  //   fs.constants.F_OK,
-  //   error => {
-  //     if (error) {
-  //       globPath = `${appDirectory}/assets/templates/`
-  //     } else {
-  //       globPath = `${appDirectory}/node_modules/create-pika-app/assets/templates`
-  //     }
-  //   }
-  // )
-  if (
-    fs.existsSync(
-      `${appDirectory}/node_modules/create-pika-app/assets/templates/README.md`
-    )
-  ) {
-    console.log("gP1", globPath);
-    globPath = `${appDirectory}/node_modules/create-pika-app/assets/templates`;
-  } else if (fs.existsSync(`${appDirectory}/assets/templates/README.md`)) {
-    console.log("gP2", globPath);
-    globPath = `${appDirectory}/assets/templates/`;
+
+  try {
+    fs.statSync(
+      `${process.cwd()}/${appName}/node_modules/create-pika-app/assets/templates/README.md`
+    );
+    globPath = `${process.cwd()}/${appName}/node_modules/create-pika-app/assets/templates`;
+  } catch (e) {
+    globPath = `${process.cwd()}/${appName}/assets/templates/`;
   }
-  console.log("gP3", globPath);
   getDirectories(globPath, (err, res) => {
     if (err) {
       console.error(red(`There was an error copying the template files`));
@@ -91,15 +77,16 @@ const copyTemplates = () => {
   // })
 };
 
-const installDependencies = () => {
+const installDependencies = appName => {
   return new Promise(resolve => {
     console.log(
       cyan(
         "\nInstalling preact, preact-compat, emotion, preact-emotion, and preact-router\n"
       )
     );
+    console.log(`${process.cwd()}/${appName}`);
     shell.exec(
-      `cd ${appDirectory} && npm install --save preact preact-compat preact-emotion preact-router emotion`,
+      `cd ${process.cwd()}/${appName} && npm install --save preact preact-compat preact-emotion preact-router emotion`,
       () => {
         console.log(green("\nFinished installing dependencies\n"));
         resolve();
@@ -108,15 +95,16 @@ const installDependencies = () => {
   });
 };
 
-const installDevDependencies = () => {
+const installDevDependencies = appName => {
   return new Promise(resolve => {
     console.log(
       cyan(
         "\nInstalling @pika/web, typescript, eslint, serve, babel, and all their required plugins/presets\n"
       )
     );
+    console.log(`${process.cwd()}/${appName}`);
     shell.exec(
-      `cd ${appDirectory} && npm install -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript`,
+      `cd ${process.cwd()}/${appName} && npm install -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript`,
       () => {
         console.log(green("\nFinished installing dev dependencies\n"));
         resolve();
@@ -180,7 +168,7 @@ const run = async () => {
   }
 
   if (typeof appName === "undefined") {
-    console.error("Please specify the project directory:");
+    console.error("Please specify the project name:");
     console.log(`  ${cyan(program.name())} ${green("<project-directory>")}`);
     console.log();
     console.log("For example:");
@@ -199,10 +187,10 @@ const run = async () => {
     );
     return false;
   }
-  await cdIntoNewApp();
-  await copyTemplates();
-  await installDependencies();
-  await installDevDependencies();
+  await cdIntoNewApp(appName);
+  await copyTemplates(appName);
+  await installDependencies(appName);
+  await installDevDependencies(appName);
   console.log(bold().green("All done 🎉"));
 };
 
