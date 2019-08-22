@@ -65,7 +65,6 @@
         "@pika/plugin-standard-pkg",
         {
           "exclude": [
-            "__tests__/**/*",
             "assets/templates/**/*"
           ]
         }
