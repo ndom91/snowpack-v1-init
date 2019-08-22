@@ -81,6 +81,12 @@
       ]
     ]
   },
+  "prettier/prettier": {
+    "tabWidth": 2,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "semi": false
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -89,10 +95,6 @@
   "lint-staged": {
     "*.js": [
       "eslint --fix",
-      "prettier --write",
-      "git add"
-    ],
-    "*.{ts,tsx,json,css,scss,md,yml}": [
       "prettier --write",
       "git add"
     ]
