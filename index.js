@@ -106,7 +106,8 @@ const run = async () => {
         console.log();
         console.log( `    If you have any problems, do not hesitate to file an issue:`);
         console.log( `      ${cyan( 'https://github.com/ndom91/create-pika-app/issues/new')}`); 
-        console.log();
+        console.log()
+    })
     .parse(process.argv)
 
   if (program.info) {
