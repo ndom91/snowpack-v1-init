@@ -4,7 +4,9 @@ const { red, cyan, green, bold, underline } = require('kleur')
 const envinfo = require('envinfo')
 var glob = require('glob')
 let fs = require('fs')
-const packageJson = require('../../package.json')
+// const gv = require('genversion')
+// const version = require('./version')
+// const packageJson = require('../../package.json')
 // const prompts = require('prompts')
 
 let appName
@@ -114,8 +116,8 @@ const installDevDependencies = appName => {
 }
 
 const run = async () => {
-  const program = new commander.Command(packageJson.name)
-    .version(packageJson.version)
+  const program = new commander.Command(process.argv[2])
+    .version('0.1.0')
     .arguments('<project-directory>')
     .usage(`${green('<project-directory>')} [options]`)
     .action(name => {
