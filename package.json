@@ -20,5 +20,8 @@
     "kleur": "^3.0.3",
     "prompts": "^2.2.1",
     "shelljs": "^0.8.3"
+  },
+  "bin": {
+     "create-pika-app": "index.js"
   }
 }
