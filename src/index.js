@@ -194,4 +194,4 @@ const run = async () => {
   console.log(bold().green('All done 🎉'))
 }
 
-run()
+export default run()
