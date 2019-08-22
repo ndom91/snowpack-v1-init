@@ -175,7 +175,6 @@ const run = async () => {
     console.log(`  ${cyan(program.name())} ${green('my-pika-app')}`)
     console.log()
     console.log(`Run ${cyan(`${program.name()} --help`)} to see all options.`)
-    process.exit(1)
   }
 
   let success = await createPikaApp()
