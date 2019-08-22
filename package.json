@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/ndom91/create-pika-app/issues"
   },
-  "homepage": "https://github.com/ndom91/create-pika-app#readme"
+  "homepage": "https://github.com/ndom91/create-pika-app#readme",
+  "dependencies": {
+    "kleur": "^3.0.3",
+    "prompts": "^2.2.1",
+    "shelljs": "^0.8.3"
+  }
 }
