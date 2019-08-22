@@ -6,7 +6,9 @@
   "scripts": {
     "prettier": "prettier --write **/*.{js,ts,tsx,json,css,scss,md,yml}",
     "lint": "eslint --ext .js,.jsx src --ignore 'web_modules/**/*.js'",
-    "build:pika": "rm -rf pkg && pika build"
+    "build:pika": "rm -rf pkg && pika build",
+    "publish": "pika publish",
+    "version": "npx @pika/pack"
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,7 @@
   "devDependencies": {
     "@pika/pack": "^0.5.0",
     "@pika/plugin-build-node": "^0.6.0",
+    "@pika/plugin-bundle-node": "^0.6.0",
     "@pika/plugin-copy-assets": "^0.6.0",
     "@pika/plugin-simple-bin": "^0.6.0",
     "@pika/plugin-standard-pkg": "^0.6.0",
@@ -68,10 +71,13 @@
         }
       ],
       [
+        "@pika/plugin-copy-assets"
+      ],
+      [
         "@pika/plugin-build-node"
       ],
       [
-        "@pika/plugin-copy-assets"
+        "@pika/plugin-bundle-node"
       ]
     ]
   },
