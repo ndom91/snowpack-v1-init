@@ -2,6 +2,15 @@
 
 Bootstrap a Preact / Typescript / Pika application without all the hassle 🎉
 
+#### Environment:  
+- [x] Preact
+- [x] Preact-router  
+- [x] Preact-emotion  
+- [x] Typescript   
+- [x] Babel   
+- [x] ESLint   
+- [x] Prettier
+
 ## Getting Started
 
 Todo!
