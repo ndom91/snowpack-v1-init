@@ -5,12 +5,12 @@ const shell = require('shelljs')
 const {red, cyan, green, white, blue, bold, underline} = require('kleur')
 const prompts = require('prompts')
 let fs = require('fs')
-const packageJson = require('./package.json')
+const packageJson = require('../package.json')
 
 let appName
 let appDirectory = `${process.cwd()}/${appName}`
 
-let templates = require('./templates/templates.js')
+let templates = require('./templates/templates.js.js')
 
 const createPikaApp = () => {
   return new Promise(resolve => {
