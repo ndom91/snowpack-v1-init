@@ -1,5 +1,5 @@
-import { h } from 'preact'
-import Console from '../Console'
+import { h } from "preact";
+import Console from "../Console/";
 
 const Terminal: preact.FunctionalComponent = () => (
   <div className="terminal-window">
@@ -10,6 +10,6 @@ const Terminal: preact.FunctionalComponent = () => (
     </header>
     <Console />
   </div>
-)
+);
 
-export default Terminal
+export default Terminal;
