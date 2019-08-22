@@ -6,7 +6,7 @@
   "scripts": {
     "prettier": "prettier --write **/*.{js,ts,tsx,json,css,scss,md,yml}",
     "lint": "eslint --ext .js,.jsx src --ignore 'web_modules/**/*.js'",
-    "publish": "pika-pack build"
+    "build:pika": "rm -rf pkg && pika build"
   },
   "repository": {
     "type": "git",
@@ -63,7 +63,7 @@
         {
           "exclude": [
             "__tests__/**/*",
-            "templates/**/*"
+            "assets/templates/**/*"
           ]
         }
       ],
@@ -71,14 +71,7 @@
         "@pika/plugin-build-node"
       ],
       [
-        "@pika/plugin-copy-assets",
-        {}
-      ],
-      [
-        "@pika/plugin-simple-bin",
-        {
-          "bin": "create-pika-app"
-        }
+        "@pika/plugin-copy-assets"
       ]
     ]
   },

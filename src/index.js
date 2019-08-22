@@ -1,16 +1,15 @@
-#!/usr/bin/env node
-
-const program = require('commander')
+const commander = require('commander')
 const shell = require('shelljs')
-const {red, cyan, green, white, blue, bold, underline} = require('kleur')
-const prompts = require('prompts')
-let fs = require('fs')
-const packageJson = require('../package.json')
+const { cyan, green, bold, underline} = require('kleur')
+// const prompts = require('prompts')
+const envinfo = require('envinfo')
+// let fs = require('fs')
+// const packageJson = require('./package.json')
 
 let appName
-let appDirectory = `${process.cwd()}/${appName}`
+let appDirectory = `${process.cwd()}/${appName}` // eslint-disable-line
 
-let templates = require('./templates/templates.js.js')
+// let templates = require('../assets/templates/templates')
 
 const createPikaApp = () => {
   return new Promise(resolve => {
@@ -36,28 +35,28 @@ const cdIntoNewApp = () => {
   })
 }
 
-const copyTemplates = () => {
-  return new Promise(resolve => {
-    let promises = []
-    Object.keys(templates).forEach((fileName, i) => {
-      promises[i] = new Promise(res => {
-        fs.writeFile(
-          `${appDirectory}/src/${fileName}`,
-          templates[fileName],
-          function(err) {
-            if (err) {
-              return console.log(err)
-            }
-            res()
-          },
-        )
-      })
-    })
-    Promise.all(promises).then(() => {
-      resolve()
-    })
-  })
-}
+// const copyTemplates = () => {
+//   return new Promise(resolve => {
+//     let promises = []
+//     Object.keys(templates).forEach((fileName, i) => {
+//       promises[i] = new Promise(res => {
+//         fs.writeFile(
+//           `${appDirectory}/src/${fileName}`,
+//           templates[fileName],
+//           function(err) {
+//             if (err) {
+//               return console.log(err)
+//             }
+//             res()
+//           },
+//         )
+//       })
+//     })
+//     Promise.all(promises).then(() => {
+//       resolve()
+//     })
+//   })
+// }
 
 const installDependencies = () => {
   return new Promise(resolve => {
@@ -91,10 +90,10 @@ const installDevDependencies = () => {
 
 
 const run = async () => {
-  const program = new commander.Command(packageJson.name)
-    .version(packageJson.version)
+  const program = new commander.Command('create-pika-app')
+    .version('0.0.2')
     .arguments('<project-directory>')
-    .usage(`${chalk.green('<project-directory>')} [options]`)
+    .usage(`${green('<project-directory>')} [options]`)
     .action(name => {
       appName = name
     })
@@ -108,10 +107,10 @@ const run = async () => {
         console.log( `      ${cyan( 'https://github.com/ndom91/create-pika-app/issues/new')}`); 
         console.log()
     })
-    .parse(process.argv)
+    .parse(process.argv) // eslint-disable-line
 
   if (program.info) {
-    console.log(chalk.bold('\nEnvironment Info:'))
+    console.log(bold('\nEnvironment Info:'))
     return envinfo
       .run(
         {
@@ -140,10 +139,10 @@ const run = async () => {
     console.log(`  ${cyan(program.name())} ${green('<project-directory>')}`)
     console.log()
     console.log('For example:')
-    console.log(`  ${cyan(program.name())} ${chalk.green('my-pika-app')}`)
+    console.log(`  ${cyan(program.name())} ${green('my-pika-app')}`)
     console.log()
     console.log(`Run ${cyan(`${program.name()} --help`)} to see all options.`)
-    process.exit(1)
+    process.exit(1) // eslint-disable-line
   }
 
   let success = await createPikaApp()
@@ -156,7 +155,7 @@ const run = async () => {
     return false
   }
   await cdIntoNewApp()
-  await copyTemplates()
+  // await copyTemplates()
   await installDependencies()
   await installDevDependencies()
   console.log(bold().green('All done 🎉'))
