@@ -1,0 +1,19 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "airbnb-typescript",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "prettier/react"
+  ],
+  "plugins": ["@typescript-eslint", "prettier", "react"],
+  "settings": {
+    "react": { "pragma": "h" }
+  },
+  "rules": {
+    "@typescript-eslint/camelcase": "off"
+  }
+}
