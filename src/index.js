@@ -1,21 +1,20 @@
 const commander = require("commander");
 const shell = require("shelljs");
-const { cyan, green, bold, underline } = require("kleur");
-// const prompts = require('prompts')
+const { red, cyan, green, bold, underline } = require("kleur");
 const envinfo = require("envinfo");
-// let fs = require('fs')
+var glob = require("glob");
+let fs = require("fs");
 const packageJson = require("../../package.json");
+// const prompts = require('prompts')
 
 let appName;
-let appDirectory = `${process.cwd()}/${appName}`; // eslint-disable-line
-
-// let templates = require('../assets/templates/templates')
+let appDirectory = `${process.cwd()}/${appName}`;
 
 const createPikaApp = () => {
   return new Promise(resolve => {
     if (appName) {
-      shell.exec(`create-react-app ${appName}`, () => {
-        console.log("Created react app");
+      shell.exec(`cd ${process.cwd()} && mkdir ${appName}`, () => {
+        console.log(`Created app: ${cyan().bold(appName)}`);
         resolve(true);
       });
     } else {
@@ -35,28 +34,62 @@ const cdIntoNewApp = () => {
   });
 };
 
-// const copyTemplates = () => {
-//   return new Promise(resolve => {
-//     let promises = []
-//     Object.keys(templates).forEach((fileName, i) => {
-//       promises[i] = new Promise(res => {
-//         fs.writeFile(
-//           `${appDirectory}/src/${fileName}`,
-//           templates[fileName],
-//           function(err) {
-//             if (err) {
-//               return console.log(err)
-//             }
-//             res()
-//           },
-//         )
-//       })
-//     })
-//     Promise.all(promises).then(() => {
-//       resolve()
-//     })
-//   })
-// }
+const copyTemplates = () => {
+  var getDirectories = function(src, callback) {
+    glob(src + "/**/*", callback);
+  };
+  let globPath;
+  // fs.access(
+  //   `${appDirectory}/node_modules/create-pika-app/assets/templates/README.md`,
+  //   fs.constants.F_OK,
+  //   error => {
+  //     if (error) {
+  //       globPath = `${appDirectory}/assets/templates/`
+  //     } else {
+  //       globPath = `${appDirectory}/node_modules/create-pika-app/assets/templates`
+  //     }
+  //   }
+  // )
+  if (
+    fs.existsSync(
+      `${appDirectory}/node_modules/create-pika-app/assets/templates/README.md`
+    )
+  ) {
+    console.log("gP1", globPath);
+    globPath = `${appDirectory}/node_modules/create-pika-app/assets/templates`;
+  } else if (fs.existsSync(`${appDirectory}/assets/templates/README.md`)) {
+    console.log("gP2", globPath);
+    globPath = `${appDirectory}/assets/templates/`;
+  }
+  console.log("gP3", globPath);
+  getDirectories(globPath, (err, res) => {
+    if (err) {
+      console.error(red(`There was an error copying the template files`));
+    } else {
+      console.log(res);
+    }
+  });
+  // return new Promise(resolve => {
+  //   let promises = []
+  //   Object.keys(templates).forEach((fileName, i) => {
+  //     promises[i] = new Promise(res => {
+  //       fs.writeFile(
+  //         `${appDirectory}/src/${fileName}`,
+  //         templates[fileName],
+  //         function(err) {
+  //           if (err) {
+  //             return console.log(err)
+  //           }
+  //           res()
+  //         },
+  //       )
+  //     })
+  //   })
+  //   Promise.all(promises).then(() => {
+  //     resolve()
+  //   })
+  // })
+};
 
 const installDependencies = () => {
   return new Promise(resolve => {
@@ -66,7 +99,7 @@ const installDependencies = () => {
       )
     );
     shell.exec(
-      `npm install --save preact preact-compat preact-emotion preact-router emotion`,
+      `cd ${appDirectory} && npm install --save preact preact-compat preact-emotion preact-router emotion`,
       () => {
         console.log(green("\nFinished installing dependencies\n"));
         resolve();
@@ -83,7 +116,7 @@ const installDevDependencies = () => {
       )
     );
     shell.exec(
-      `npm install -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript`,
+      `cd ${appDirectory} && npm install -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript`,
       () => {
         console.log(green("\nFinished installing dev dependencies\n"));
         resolve();
@@ -114,7 +147,7 @@ const run = async () => {
       );
       console.log();
     })
-    .parse(process.argv); // eslint-disable-line
+    .parse(process.argv);
 
   if (program.info) {
     console.log(bold("\nEnvironment Info:"));
@@ -146,7 +179,7 @@ const run = async () => {
       .then(console.log);
   }
 
-  if (typeof projectName === "undefined") {
+  if (typeof appName === "undefined") {
     console.error("Please specify the project directory:");
     console.log(`  ${cyan(program.name())} ${green("<project-directory>")}`);
     console.log();
@@ -154,7 +187,7 @@ const run = async () => {
     console.log(`  ${cyan(program.name())} ${green("my-pika-app")}`);
     console.log();
     console.log(`Run ${cyan(`${program.name()} --help`)} to see all options.`);
-    process.exit(1); // eslint-disable-line
+    process.exit(1);
   }
 
   let success = await createPikaApp();
@@ -167,7 +200,7 @@ const run = async () => {
     return false;
   }
   await cdIntoNewApp();
-  // await copyTemplates()
+  await copyTemplates();
   await installDependencies();
   await installDevDependencies();
   console.log(bold().green("All done 🎉"));
