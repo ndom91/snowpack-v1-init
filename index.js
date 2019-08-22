@@ -80,7 +80,7 @@ const installDevDependencies = () => {
       '\nInstalling @pika/web, typescript, eslint, serve, babel, and all their required plugins/presets\n'
     ))
     shell.exec(
-      `npm install -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript`,
+      `npm install -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript`,
       () => {
         console.log(green('\nFinished installing dev dependencies\n'))
         resolve()
