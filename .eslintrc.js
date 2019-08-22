@@ -1,10 +1,11 @@
 module.exports = {
   env: {
-    browser: true,
+    node: true,
     commonjs: true,
     es6: true
   },
-  extends: "eslint:recommended",
+  extends: ["eslint:recommended", "prettier"],
+  plugins: ["prettier", "import", "node"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly"
@@ -12,5 +13,15 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018
   },
-  rules: {}
+  rules: {
+    "prettier/prettier": [
+      "error",
+      {
+        tabWidth: 2,
+        singleQuote: true,
+        trailingComma: "es5",
+        semi: false
+      }
+    ]
+  }
 };
