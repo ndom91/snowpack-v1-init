@@ -39,4 +39,4 @@ npx create-pika-app myNewAppName
 [`dangodev/pika-web-preact`](https://github.com/dangodev/pika-web-react)  
 
 ---
-`Licence` [`MIT`](https://opensource.org/licenses/MIT)
+`Licence [MIT`](https://opensource.org/licenses/MIT)
