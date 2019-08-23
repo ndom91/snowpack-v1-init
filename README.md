@@ -1,4 +1,4 @@
-# 📦 create-pika-app
+# 📦✨ create-pika-app
 
  Bootstrap a Preact / Typescript / Pika application without all the hassle 
 
@@ -19,7 +19,7 @@ npx create-pika-app myNewAppName
 ```
 
 
-## 👥 Contributing
+## 🚧 Contributing
 
 1. Clone the repo  
 `git clone https://github.com/ndom91/create-pika-app`  
@@ -39,4 +39,4 @@ npx create-pika-app myNewAppName
 [`dangodev/pika-web-preact`](https://github.com/dangodev/pika-web-react)  
 
 ---
-`Licence `[`MIT`](https://opensource.org/licenses/MIT)
+📝 `Licence `[`MIT`](https://opensource.org/licenses/MIT)
