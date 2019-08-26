@@ -3,7 +3,7 @@ workflow "Build, Test, and Publish" {
   resolves = ["Publish"]
 }
 
-action "install" {
+action "Install" {
   uses = "actions/npm@master"
   args = "install"
 }
