@@ -1,11 +1,11 @@
-workflow "Build, Test, and Publish" {
+workflow "Build + Publish NPM" {
   on = "push"
   resolves = ["Publish"]
 }
 
 action "Build" {
   uses = "actions/npm@master"
-  args = "install && build:pika"
+  args = "install"
 }
 
 action "Test" {

@@ -7,6 +7,7 @@
     "prettier": "prettier --write **/*.{js,ts,tsx,json,css,scss,md,yml}",
     "lint": "eslint --ext .js,.jsx src --ignore 'web_modules/**/*.js'",
     "build:pika": "rm -rf pkg && pika build",
+    "prepublish": "npm run build:pika",
     "publish": "pika publish",
     "version": "npx @pika/pack"
   },
