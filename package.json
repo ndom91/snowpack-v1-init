@@ -8,7 +8,7 @@
     "lint": "eslint --ext .js,.jsx src --ignore 'web_modules/**/*.js'",
     "test": "npm run prettier && npm run lint",
     "build:pika": "rm -rf pkg && pika build",
-    "prepublish": "npm run build:pika",
+    "prepare": "npm run build:pika",
     "publish": "pika publish",
     "version": "npx @pika/pack"
   },
