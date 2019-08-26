@@ -3,9 +3,15 @@ workflow "Build, Test, and Publish" {
   resolves = ["Publish"]
 }
 
-action "Build" {
+action "install" {
   uses = "actions/npm@master"
   args = "install"
+}
+
+action "Build" {
+  needs = "Install"
+  uses = "actions/npm@master"
+  args = "build:pika"
 }
 
 action "Test" {
