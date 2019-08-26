@@ -14,15 +14,9 @@ action "Build" {
   args = "run build"
 }
 
-action "Test" {
-  needs = "Build"
-  uses = "actions/npm@master"
-  args = "test"
-}
-
 # Filter for master branch
 action "Master" {
-  needs = "Test"
+  needs = "Build"
   uses = "actions/bin/filter@master"
   args = "branch master"
 }
