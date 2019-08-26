@@ -1,4 +1,4 @@
-workflow "Build Publish NPM" {
+workflow "Build, Test, and Publish" {
   on = "push"
   resolves = ["Publish"]
 }
