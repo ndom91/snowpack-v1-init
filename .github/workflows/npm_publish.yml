@@ -15,7 +15,7 @@ action "Test" {
 }
 
 # Filter for master branch
-  action "Master" {
+action "Master" {
   needs = "Test"
   uses = "actions/bin/filter@master"
   args = "branch master"
