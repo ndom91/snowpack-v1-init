@@ -1,7 +1,7 @@
 const commander = require('commander')
 const shell = require('shelljs')
 const ora = require('ora')
-const { cyan, green, bold } = require('kleur')
+const { red, cyan, green, bold } = require('kleur') // eslint-disable-line
 const envinfo = require('envinfo')
 let fs = require('fs')
 let path = require('path')
@@ -11,6 +11,7 @@ const createPikaApp = appName => {
     if (appName) {
       if (path.isAbsolute(appName)) {
         shell.exec(`mkdir ${appName}`, () => {
+          console.log()
           console.log(green().bold('Welcome to create-pika-app'))
           console.log()
           console.log(`Creating app: ${cyan().bold(appName)}`)
