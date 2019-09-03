@@ -63,36 +63,32 @@ const copyTemplates = appDirectory => {
 const installDependencies = appDirectory => {
   return new Promise(resolve => {
     const installDepSpinner = ora(
-      cyan(
-        '\nInstalling preact, preact-compat, emotion, preact-emotion, and preact-router'
-      )
+      '\nInstalling preact, preact-compat, emotion, preact-emotion, and preact-router'
     ).start()
     shell.exec(
       `cd ${appDirectory} && npm install --silent --save preact preact-compat preact-emotion preact-router emotion > /dev/null`,
       () => {
         console.log(green('\nFinished installing dependencies\n'))
         resolve()
+        installDepSpinner.succeed()
       }
     )
-    installDepSpinner.succeed()
   })
 }
 
 const installDevDependencies = appDirectory => {
   return new Promise(resolve => {
     const installDevDepSpinner = ora(
-      cyan(
-        '\nInstalling @pika/web, typescript, eslint, serve, babel, and all their required plugins/presets\n'
-      )
+      '\nInstalling @pika/web, typescript, eslint, serve, babel, and all their required plugins/presets\n'
     )
     shell.exec(
       `cd ${appDirectory} && npm install --silent -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null`,
       () => {
         console.log(green('\nFinished installing dev dependencies\n'))
         resolve()
+        installDevDepSpinner.succeed()
       }
     )
-    installDevDepSpinner.succeed()
   })
 }
 
