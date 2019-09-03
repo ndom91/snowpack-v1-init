@@ -39,7 +39,7 @@ const createPikaApp = appName => {
 
 const cdIntoNewApp = () => {
   return new Promise(resolve => {
-    shell.exec(`cd ${appDirectory}`, () => {
+    shell.exec(`cd ${appDirectory} && npm init --yes`, () => {
       resolve()
     })
   })
