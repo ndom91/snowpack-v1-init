@@ -112,7 +112,7 @@ const installDependencies = appDirectory => {
       )}, and ${cyan('preact-router')}`,
     }).start()
     shell.exec(
-      `cd ${appDirectory} && npm install --silent --save preact preact-compat preact-emotion preact-router emotion > /dev/null`,
+      `cd ${appDirectory} && npm install --silent --save preact preact-compat preact-emotion preact-router emotion@9.2.12 > /dev/null`,
       () => {
         installDepSpinner.succeed()
         resolve()
@@ -131,7 +131,7 @@ const installDevDependencies = appDirectory => {
       )}, and other dev dependencies`,
     }).start()
     shell.exec(
-      `cd ${appDirectory} && npm install --silent -D @babel/cli @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/plugin-transform-react-jsx @babel/preset-env @babel/preset-react @babel/preset-typescript @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web babel-plugin-module-resolver concurrently copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null`,
+      `cd ${appDirectory} && npm install --silent -D @babel/cli @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/plugin-transform-react-jsx @babel/preset-env @babel/preset-react @babel/preset-typescript @pika/web@0.4.2 @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web babel-plugin-module-resolver concurrently copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null`,
       () => {
         installDevDepSpinner.succeed()
         resolve()
