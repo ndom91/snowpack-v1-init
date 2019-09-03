@@ -1,6 +1,6 @@
 {
   "name": "create-pika-app",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Bootstrap a Preact/Pika/Typescript web application without the hassle!",
   "main": "index.js",
   "scripts": {
