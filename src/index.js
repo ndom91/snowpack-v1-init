@@ -73,7 +73,6 @@ const initApp = appDirectory => {
       })
       jsonfile.writeFileSync(`${appDirectory}/package.json`, webDependencies, {
         spaces: 2,
-        flag: 'a',
       })
     })
   })
