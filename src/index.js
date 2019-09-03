@@ -85,7 +85,7 @@ const installDevDependencies = appDirectory => {
   return new Promise(resolve => {
     const installDevDepSpinner = ora({
       text:
-        'Installing @pika/web, typescript, eslint, serve, babel, and all their required plugins/presets',
+        'Installing @pika/web, typescript, eslint, serve, babel, and other dev dependencies',
     }).start()
     shell.exec(
       `cd ${appDirectory} && npm install --silent -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null`,
@@ -180,6 +180,7 @@ const run = async () => {
   await copyTemplates(appDirectory)
   await installDependencies(appDirectory)
   await installDevDependencies(appDirectory)
+  console.log()
   console.log(`Application ready at ${bold(appDirectory)}!`)
   console.log()
   console.log(green('✔️ ') + bold(' Complete!'))
