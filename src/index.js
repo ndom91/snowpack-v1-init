@@ -39,23 +39,23 @@ const initApp = appDirectory => {
   return new Promise(resolve => {
     shell.exec(`cd ${appDirectory} && npm init --yes > /dev/null`, () => {
       const packaged = jsonfile.readFileSync(`${appDirectory}/package.json`)
-      packaged.scripts.build = 'pika-web --dest dist/web_modules'
-      packaged.scripts['build:esm'] =
+      packaged.scripts['build'] =
         'npm run build:ts && npm run build:esm && npm run build:js && npm run copy'
+      packaged.scripts['build:esm'] = 'pika-web --dest dist/web_modules'
       packaged.scripts['build:js'] =
         "babel dist -d dist --ignore 'dist/web_modules/*.js'"
       packaged.scripts['build:js:watch'] =
         "babel dist -d dist --ignore 'dist/web_modules/*.js' --watch"
       packaged.scripts['build:ts'] = 'rm -rf dist && tsc'
       packaged.scripts['build:ts:watch'] = 'tsc -w'
-      packaged.scripts.copy =
+      packaged.scripts['copy'] =
         "copyfiles 'src/*.html' 'src/**/*.gif' 'src/*.css' dist -u 1"
-      packaged.scripts.dev =
+      packaged.scripts['dev'] =
         "npm run build && concurrently 'npm run build:ts:watch' 'npm run build:js:watch' 'serve -s dist'"
-      packaged.scripts.lint =
+      packaged.scripts['lint'] =
         "eslint --ext .ts,.tsx src --ignore 'web_modules/**/*.js'"
-      packaged.scripts.prestart = 'npm run build'
-      packaged.scripts.start = 'serve -s dist'
+      packaged.scripts['prestart'] = 'npm run build'
+      packaged.scripts['start'] = 'serve -s dist'
       jsonfile.writeFileSync(`${appDirectory}/package.json`, packaged, {
         spaces: 2,
       })
