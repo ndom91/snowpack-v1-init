@@ -11,12 +11,16 @@ const createPikaApp = appName => {
     if (appName) {
       if (path.isAbsolute(appName)) {
         shell.exec(`mkdir ${appName}`, () => {
-          console.log(`Created app: ${cyan().bold(appName)}`)
+          console.log(green().bold('Welcome to create-pika-app'))
+          console.log()
+          console.log(`Creating app: ${cyan().bold(appName)}`)
           resolve(true)
         })
       } else {
         shell.exec(`cd ${process.cwd()} && mkdir ${appName}`, () => {
-          console.log(`Created app: ${cyan().bold(appName)}`)
+          console.log(green().bold('Welcome to create-pika-app'))
+          console.log()
+          console.log(`Creating app: ${cyan().bold(appName)}`)
           resolve(true)
         })
       }
@@ -82,7 +86,7 @@ const installDevDependencies = appDirectory => {
   return new Promise(resolve => {
     const installDevDepSpinner = ora({
       text:
-        'Installing @pika/web, typescript, eslint, serve, babel, and all their required plugins/presets\n',
+        'Installing @pika/web, typescript, eslint, serve, babel, and all their required plugins/presets',
       indent: 2,
     })
     shell.exec(
@@ -179,7 +183,7 @@ const run = async () => {
   await copyTemplates(appDirectory)
   await installDependencies(appDirectory)
   await installDevDependencies(appDirectory)
-  console.log(bold().green('All done 🎉'))
+  console.log(green('✔️') + bold(' Complete!'))
 }
 
 export default run()

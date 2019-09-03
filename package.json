@@ -39,7 +39,7 @@
     "bootstrapping"
   ],
   "bin": {
-    "create-pika-app": "dist-node/index.js"
+    "create-pika-app": "dist-node/index.bin.js"
   },
   "devDependencies": {
     "@pika/pack": "^0.5.0",
