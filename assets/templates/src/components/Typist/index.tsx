@@ -4,35 +4,33 @@ type TypistType = {
   file: string
 }
 
-type TypistState ={
+type TypistState = {
   renderText: string
   index: number
 }
 
 class Typist extends Component<TypistType, TypistState> {
-  timeoutId:number = 0
+  timeoutId: number = 0
 
-  constructor (props:TypistType) {
+  constructor(props: TypistType) {
     super(props)
 
     this.state = {
       renderText: '',
-      index: 2
+      index: 2,
     }
   }
 
   componentDidMount() {
-    this.timeoutId = window.setInterval(() => { this.write() }, 40)
+    this.timeoutId = window.setInterval(() => {
+      this.write()
+    }, 40)
   }
 
   write = () => {
-    const {
-      file
-    } = this.props
+    const { file } = this.props
 
-    const {
-      index
-    } = this.state 
+    const { index } = this.state
 
     const intermediateTextFn = (position: number) => {
       let text = file.slice(0, file.length - (file.length - position))
@@ -47,8 +45,8 @@ class Typist extends Component<TypistType, TypistState> {
     const toBeRenderedText = intermediateTextFn(index)
 
     this.setState({
-          renderText: toBeRenderedText,
-          index: index + 1
+      renderText: toBeRenderedText,
+      index: index + 1,
     })
 
     const body = document.querySelector('body')
@@ -56,8 +54,8 @@ class Typist extends Component<TypistType, TypistState> {
     if (body && body.scrollHeight > window.innerHeight) {
       window.scrollBy({
         top: 50,
-        behavior: 'auto'
-      });
+        behavior: 'auto',
+      })
     }
 
     if (index >= file.length) {
@@ -65,15 +63,16 @@ class Typist extends Component<TypistType, TypistState> {
     }
   }
 
-  render () {
-    const {
-      renderText
-    } = this.state
+  render() {
+    const { renderText } = this.state
 
     return (
-      <div 
-        dangerouslySetInnerHTML={{ __html: renderText.replace(/\n/g, '<br />')}} className="terminal-body"
-        ></div>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: renderText.replace(/\n/g, '<br />'),
+        }}
+        className="terminal-body"
+      ></div>
     )
   }
 }

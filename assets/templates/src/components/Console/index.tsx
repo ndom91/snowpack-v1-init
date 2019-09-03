@@ -11,9 +11,7 @@ const Container = styled('div')`
 const Console: preact.FunctionalComponent = () => (
   <div>
     <Container id="console">
-      <Typist
-        file={text}
-       />
+      <Typist file={text} />
     </Container>
   </div>
 )
