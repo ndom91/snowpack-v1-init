@@ -4,21 +4,30 @@ const { red, cyan, green, bold } = require('kleur')
 const envinfo = require('envinfo')
 var glob = require('glob')
 let fs = require('fs')
+let path = require('path')
 // const gv = require('genversion')
 // const version = require('./version')
 // const packageJson = require('../../package.json')
 // const prompts = require('prompts')
 
 let appName
-// let appDirectory = `${process.cwd()}/${appName}`
+let appDirectory = `${process.cwd()}/${appName}`
 
-const createPikaApp = () => {
+const createPikaApp = appName => {
   return new Promise(resolve => {
     if (appName) {
-      shell.exec(`cd ${process.cwd()} && mkdir ${appName}`, () => {
-        console.log(`Created app: ${cyan().bold(appName)}`)
-        resolve(true)
-      })
+      if (path.isAbsolute(appName)) {
+        appDirectory = appName
+        shell.exec(`mkdir ${appName}`, () => {
+          console.log(`Created app: ${cyan().bold(appName)}`)
+          resolve(true)
+        })
+      } else {
+        shell.exec(`cd ${process.cwd()} && mkdir ${appName}`, () => {
+          console.log(`Created app: ${cyan().bold(appName)}`)
+          resolve(true)
+        })
+      }
     } else {
       console.log(bold().red('\nNo app name was provided.'))
       console.log(bold('\nUsage:'))
@@ -28,15 +37,15 @@ const createPikaApp = () => {
   })
 }
 
-const cdIntoNewApp = appName => {
+const cdIntoNewApp = () => {
   return new Promise(resolve => {
-    shell.exec(`cd ${appName}`, () => {
+    shell.exec(`cd ${appDirectory}`, () => {
       resolve()
     })
   })
 }
 
-const copyTemplates = appName => {
+const copyTemplates = () => {
   var getDirectories = function(src, callback) {
     glob(src + '/**/*', callback)
   }
@@ -44,11 +53,11 @@ const copyTemplates = appName => {
 
   try {
     fs.statSync(
-      `${process.cwd()}/${appName}/node_modules/create-pika-app/assets/templates/README.md`
+      `${appDirectory}/node_modules/create-pika-app/assets/templates/README.md`
     )
-    globPath = `${process.cwd()}/${appName}/node_modules/create-pika-app/assets/templates`
+    globPath = `${appDirectory}/node_modules/create-pika-app/assets/templates`
   } catch (e) {
-    globPath = `${process.cwd()}/${appName}/assets/templates/`
+    globPath = `${appDirectory}/assets/templates/`
   }
   getDirectories(globPath, (err, res) => {
     if (err) {
@@ -79,16 +88,16 @@ const copyTemplates = appName => {
   // })
 }
 
-const installDependencies = appName => {
+const installDependencies = () => {
   return new Promise(resolve => {
     console.log(
       cyan(
         '\nInstalling preact, preact-compat, emotion, preact-emotion, and preact-router\n'
       )
     )
-    console.log(`${process.cwd()}/${appName}`)
+    // console.log(`${process.cwd()}/${appName}`)
     shell.exec(
-      `cd ${process.cwd()}/${appName} && npm install --save preact preact-compat preact-emotion preact-router emotion`,
+      `cd ${appDirectory} && npm install --save preact preact-compat preact-emotion preact-router emotion`,
       () => {
         console.log(green('\nFinished installing dependencies\n'))
         resolve()
@@ -97,16 +106,16 @@ const installDependencies = appName => {
   })
 }
 
-const installDevDependencies = appName => {
+const installDevDependencies = () => {
   return new Promise(resolve => {
     console.log(
       cyan(
         '\nInstalling @pika/web, typescript, eslint, serve, babel, and all their required plugins/presets\n'
       )
     )
-    console.log(`${process.cwd()}/${appName}`)
+    // console.log(`${process.cwd()}/${appName}`)
     shell.exec(
-      `cd ${process.cwd()}/${appName} && npm install -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript`,
+      `cd ${appDirectory} && npm install -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript`,
       () => {
         console.log(green('\nFinished installing dev dependencies\n'))
         resolve()
@@ -116,6 +125,7 @@ const installDevDependencies = appName => {
 }
 
 const cli = async () => {
+  let appName
   const program = new commander.Command(process.argv[2])
     .version('0.1.0')
     .arguments('<project-directory>')
@@ -169,7 +179,7 @@ const cli = async () => {
       .then(console.log)
   }
 
-  if (typeof appName === 'undefined') {
+  if (typeof appName === undefined) {
     console.error('Please specify the project name:')
     console.log(`  ${cyan(program.name())} ${green('<project-directory>')}`)
     console.log()
@@ -179,8 +189,8 @@ const cli = async () => {
     console.log(`Run ${cyan(`${program.name()} --help`)} to see all options.`)
   }
 
-  let success = await createPikaApp()
-  if (!success) {
+  let success = await createPikaApp(appName)
+  if (!success && typeof appName !== undefined) {
     console.log(
       bold().red(
         'Something went wrong while trying to create a new Preact app using create-pika-app'
@@ -188,8 +198,8 @@ const cli = async () => {
     )
     return false
   }
-  await cdIntoNewApp(appName)
-  await copyTemplates(appName)
+  await cdIntoNewApp()
+  await copyTemplates()
   await installDependencies(appName)
   await installDevDependencies(appName)
   console.log(bold().green('All done 🎉'))
