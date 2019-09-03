@@ -88,7 +88,7 @@ const installDevDependencies = appDirectory => {
       text:
         'Installing @pika/web, typescript, eslint, serve, babel, and all their required plugins/presets',
       indent: 2,
-    })
+    }).start()
     shell.exec(
       `cd ${appDirectory} && npm install --silent -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null`,
       () => {
