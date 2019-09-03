@@ -6,14 +6,10 @@ var glob = require('glob')
 let fs = require('fs')
 let path = require('path')
 
-let appName
-let appDirectory = `${process.cwd()}/${appName}`
-
 const createPikaApp = appName => {
   return new Promise(resolve => {
     if (appName) {
       if (path.isAbsolute(appName)) {
-        appDirectory = appName
         shell.exec(`mkdir ${appName}`, () => {
           console.log(`Created app: ${cyan().bold(appName)}`)
           resolve(true)
@@ -33,7 +29,7 @@ const createPikaApp = appName => {
   })
 }
 
-const initApp = () => {
+const initApp = appDirectory => {
   return new Promise(resolve => {
     shell.exec(`cd ${appDirectory} && npm init --yes > /dev/null`, () => {
       resolve()
@@ -41,7 +37,7 @@ const initApp = () => {
   })
 }
 
-const copyTemplates = () => {
+const copyTemplates = appDirectory => {
   var getDirectories = function(src, callback) {
     glob(src + '/**/*', callback)
   }
@@ -84,7 +80,7 @@ const copyTemplates = () => {
   // })
 }
 
-const installDependencies = () => {
+const installDependencies = appDirectory => {
   return new Promise(resolve => {
     console.log(
       cyan(
@@ -102,7 +98,7 @@ const installDependencies = () => {
   })
 }
 
-const installDevDependencies = () => {
+const installDevDependencies = appDirectory => {
   return new Promise(resolve => {
     console.log(
       cyan(
@@ -121,6 +117,11 @@ const installDevDependencies = () => {
 }
 
 const cli = async () => {
+  let appName
+  let appDirectory = `${process.cwd()}/${appName}`
+  if (path.isAbsolute(appName)) {
+    appDirectory = appName
+  }
   const program = new commander.Command(process.argv[2])
     .version('0.1.0')
     .arguments('<project-directory>')
@@ -197,10 +198,10 @@ const cli = async () => {
     )
     return false
   }
-  await initApp()
-  await copyTemplates()
-  await installDependencies(appName)
-  await installDevDependencies(appName)
+  await initApp(appDirectory)
+  await copyTemplates(appDirectory)
+  await installDependencies(appDirectory)
+  await installDevDependencies(appDirectory)
   console.log(bold().green('All done 🎉'))
 }
 
