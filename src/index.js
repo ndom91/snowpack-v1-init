@@ -1,7 +1,7 @@
 const commander = require('commander')
 const shell = require('shelljs')
 const ora = require('ora')
-const addScript = require('npm-add-script')
+var jsonfile = require('jsonfile')
 const { red, cyan, green, bold } = require('kleur') // eslint-disable-line
 const envinfo = require('envinfo')
 let fs = require('fs')
@@ -40,38 +40,27 @@ const initApp = appDirectory => {
     shell.exec(`cd ${appDirectory} && npm init --yes > /dev/null`, () => {
       resolve()
     })
-    addScript({ key: '' })
-    addScript({
-      key: 'build',
-      value:
-        'npm run build:ts && npm run build:esm && npm run build:js && npm run copy',
+    const packaged = jsonfile.readFileSync(`${appDirectory}/package.json`)
+    packaged.script['build'] = 'pika-web --dest dist/web_modules'
+    packaged.script['build:esm'] =
+      'npm run build:ts && npm run build:esm && npm run build:js && npm run copy'
+    packaged.script['build:js'] =
+      "babel dist -d dist --ignore 'dist/web_modules/*.js'"
+    packaged.script['build:js:watch'] =
+      "babel dist -d dist --ignore 'dist/web_modules/*.js' --watch"
+    packaged.script['build:ts'] = 'rm -rf dist && tsc'
+    packaged.script['build:ts:watch'] = 'tsc -w'
+    packaged.script['copy'] =
+      "copyfiles 'src/*.html' 'src/**/*.gif' 'src/*.css' dist -u 1"
+    packaged.script['dev'] =
+      "npm run build && concurrently 'npm run build:ts:watch' 'npm run build:js:watch' 'serve -s dist'"
+    packaged.script['lint'] =
+      "eslint --ext .ts,.tsx src --ignore 'web_modules/**/*.js'"
+    packaged.script['prestart'] = 'npm run build'
+    packaged.script['start'] = 'serve -s dist'
+    jsonfile.writeFileSync(`${appDirectory}/package.json`, packaged, {
+      spaces: 2,
     })
-    addScript({ key: 'build:esm', value: 'pika-web --dest dist/web_modules' })
-    addScript({
-      key: 'build:js',
-      value: "babel dist -d dist --ignore 'dist/web_modules/*.js'",
-    })
-    addScript({
-      key: 'build:js:watch',
-      value: "babel dist -d dist --ignore 'dist/web_modules/*.js' --watch",
-    })
-    addScript({ key: 'build:ts', value: 'rm -rf dist && tsc' })
-    addScript({ key: 'build:ts:watch', value: 'tsc -w' })
-    addScript({
-      key: 'copy',
-      value: "copyfiles 'src/*.html' 'src/**/*.gif' 'src/*.css' dist -u 1",
-    })
-    addScript({
-      key: 'dev',
-      value:
-        "npm run build && concurrently 'npm run build:ts:watch' 'npm run build:js:watch' 'serve -s dist'",
-    })
-    addScript({
-      key: 'lint',
-      value: "eslint --ext .ts,.tsx src --ignore 'web_modules/**/*.js'",
-    })
-    addScript({ key: 'prestart', value: 'npm run build' })
-    addScript({ key: 'start', value: 'serve -s dist' })
   })
 }
 
