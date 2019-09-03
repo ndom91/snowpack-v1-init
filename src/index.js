@@ -14,14 +14,14 @@ const createPikaApp = appName => {
           console.log()
           console.log(green().bold('Welcome to create-pika-app'))
           console.log()
-          console.log(`Creating app: ${cyan().bold(appName)}`)
+          console.log(`Creating app: ${cyan().bold(appName)}\n`)
           resolve(true)
         })
       } else {
         shell.exec(`cd ${process.cwd()} && mkdir ${appName}`, () => {
           console.log(green().bold('Welcome to create-pika-app'))
           console.log()
-          console.log(`Creating app: ${cyan().bold(appName)}`)
+          console.log(`Creating app: ${cyan().bold(appName)}\n`)
           resolve(true)
         })
       }
@@ -70,13 +70,11 @@ const installDependencies = appDirectory => {
     const installDepSpinner = ora({
       text:
         'Installing preact, preact-compat, emotion, preact-emotion, and preact-router',
-      indent: 2,
     }).start()
     shell.exec(
       `cd ${appDirectory} && npm install --silent --save preact preact-compat preact-emotion preact-router emotion > /dev/null`,
       () => {
         installDepSpinner.succeed()
-        console.log(green('\nFinished installing dependencies\n'))
         resolve()
       }
     )
@@ -88,13 +86,11 @@ const installDevDependencies = appDirectory => {
     const installDevDepSpinner = ora({
       text:
         'Installing @pika/web, typescript, eslint, serve, babel, and all their required plugins/presets',
-      indent: 2,
     }).start()
     shell.exec(
       `cd ${appDirectory} && npm install --silent -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null`,
       () => {
         installDevDepSpinner.succeed()
-        console.log(green('\nFinished installing dev dependencies\n'))
         resolve()
       }
     )
@@ -184,7 +180,9 @@ const run = async () => {
   await copyTemplates(appDirectory)
   await installDependencies(appDirectory)
   await installDevDependencies(appDirectory)
-  console.log(green('✔️') + bold(' Complete!'))
+  console.log(`Application ready at ${bold(appDirectory)}!`)
+  console.log()
+  console.log(green('✔️ ') + bold(' Complete!'))
 }
 
 export default run()
