@@ -100,7 +100,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix --ignore ./assets/**/*",
+      "eslint --fix src",
       "prettier --write",
       "git add"
     ]
