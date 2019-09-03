@@ -118,10 +118,6 @@ const installDevDependencies = appDirectory => {
 
 const cli = async () => {
   let appName
-  let appDirectory = `${process.cwd()}/${appName}`
-  if (path.isAbsolute(appName)) {
-    appDirectory = appName
-  }
   const program = new commander.Command(process.argv[2])
     .version('0.1.0')
     .arguments('<project-directory>')
@@ -173,6 +169,11 @@ const cli = async () => {
         }
       )
       .then(console.log)
+  }
+
+  let appDirectory = `${process.cwd()}/${appName}`
+  if (path.isAbsolute(appName)) {
+    appDirectory = appName
   }
 
   if (typeof appName === undefined) {
