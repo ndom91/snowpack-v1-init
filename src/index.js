@@ -1,6 +1,6 @@
 const commander = require('commander')
 const shell = require('shelljs')
-const { red, cyan, green, bold, underline } = require('kleur')
+const { red, cyan, green, bold } = require('kleur')
 const envinfo = require('envinfo')
 var glob = require('glob')
 let fs = require('fs')
@@ -21,7 +21,7 @@ const createPikaApp = () => {
       })
     } else {
       console.log(bold().red('\nNo app name was provided.'))
-      console.log(underline('\nUsage: '))
+      console.log(bold('\nUsage:'))
       console.log('\ncreate-pika-app ', 'app-name\n'.cyan)
       resolve(false)
     }
@@ -115,7 +115,7 @@ const installDevDependencies = appName => {
   })
 }
 
-const run = async () => {
+const cli = async () => {
   const program = new commander.Command(process.argv[2])
     .version('0.1.0')
     .arguments('<project-directory>')
@@ -195,4 +195,4 @@ const run = async () => {
   console.log(bold().green('All done 🎉'))
 }
 
-export default run()
+export default cli()

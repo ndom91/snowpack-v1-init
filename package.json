@@ -67,7 +67,7 @@
         "@pika/plugin-standard-pkg",
         {
           "exclude": [
-            "assets/templates/**/*",
+            "assets/**/*",
             "**/*.json"
           ]
         }
@@ -79,9 +79,15 @@
         "@pika/plugin-build-node"
       ],
       [
-        "@pika/plugin-simple-bin",
+        "pika-plugin-pkg-node",
         {
-          "bin": "create-pika-app"
+          "name": "create-pika-app",
+          "assets": [
+            "assets/**/*"
+          ],
+          "targets": [
+            "linux"
+          ]
         }
       ]
     ]

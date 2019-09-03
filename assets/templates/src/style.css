@@ -4,78 +4,84 @@ body {
 }
 
 .terminal-window {
-	margin-top: 50px;
-	margin-left:auto;
-	margin-right:auto;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .terminal-window header .button {
-    width: 12px;
-    height: 12px;
-    margin: 10px 4px 0 0;
-    display: inline-block;
-    border-radius: 8px;
+  width: 12px;
+  height: 12px;
+  margin: 10px 4px 0 0;
+  display: inline-block;
+  border-radius: 8px;
 }
 .terminal-window header .button.red {
-    background: #DD373B;
+  background: #dd373b;
 }
 .terminal-window header .button.yellow {
-    background: #F6AE24;
+  background: #f6ae24;
 }
 .terminal-window header .button.green {
-    background: #33D234;
+  background: #33d234;
 }
 
 header {
-	width:750px;
-	margin-left:auto;
-	margin-right:auto;
-	height: 30px;
-	background: #fff;
-	border-radius: 4px 4px 0 0;
-	padding-left: 20px;
-	padding-right: 20px;
+  width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 30px;
+  background: #fff;
+  border-radius: 4px 4px 0 0;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 #console {
-	font-family: courier, monospace;
-	color: #fff;
-	background-color: rgba(0, 0, 0, 0.637);
-	width:750px;
-	margin-left:auto;
-	margin-right:auto;
-	padding: 20px;
-	padding-bottom: 50px;
-	font-size:14px;
+  font-family: courier, monospace;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.637);
+  width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  padding-bottom: 50px;
+  font-size: 14px;
 }
 
 a {
-	color: #0bc;
-	text-decoration: none;
+  color: #0bc;
+  text-decoration: none;
 }
 
 #a {
-	color: #0f0;
+  color: #0f0;
 }
 
 #c {
-	color: #0bc;
+  color: #0bc;
 }
 
 #b {
-	color: #ff0096;
+  color: #ff0096;
 }
 
 #k {
-    	animation: change 1s;
+  animation: change 1s;
 }
 
-#op{
-    	color: #888888
+#op {
+  color: #888888;
 }
 
 @keyframes change {
-    	0%  { color:  #0f0; }
-    	50% { color:  #0f0; }
-    	99% { color: black; }
+  0% {
+    color: #0f0;
+  }
+  50% {
+    color: #0f0;
+  }
+  99% {
+    color: black;
+  }
 }
