@@ -17,7 +17,11 @@ Bootstrap a Preact / Typescript / Pika application without all the hassle
 
 ```
 npx create-pika-app myNewAppName
+cd myNewAppName
+npm run dev
 ```
+
+The example application will then be available at `localhost:5000`!
 
 ## 🚧 Contributing
 
