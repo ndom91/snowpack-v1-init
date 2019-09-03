@@ -86,9 +86,6 @@
       ]
     ]
   },
-  "eslintIgnore": [
-    "assets/**/*"
-  ],
   "prettier": {
     "tabWidth": 2,
     "singleQuote": true,
