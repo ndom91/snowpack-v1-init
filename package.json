@@ -8,7 +8,7 @@
     "lint": "eslint --ext .js,.jsx src",
     "test": "npm run prettier && npm run lint",
     "build": "rm -rf pkg && pika build",
-    "publish": "pika publish -- --no-release-draft",
+    "publish": "pika publish",
     "version": "npx @pika/pack"
   },
   "repository": {
