@@ -1,6 +1,6 @@
 workflow "Build, Test, and Publish" {
   on = "push"
-  resolves = ["Publish"]
+  # resolves = ["Publish"]
 }
 
 action "Install" {

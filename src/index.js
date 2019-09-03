@@ -90,8 +90,11 @@ const copyTemplates = appDirectory => {
 const installDependencies = appDirectory => {
   return new Promise(resolve => {
     const installDepSpinner = ora({
-      text:
-        'Installing preact, preact-compat, emotion, preact-emotion, and preact-router',
+      text: `${bold().white('create-pika-app')} installing... ${cyan(
+        'preact'
+      )}, ${cyan('preact-compat')}, ${cyan('emotion')}, ${cyan(
+        'preact-emotion'
+      )}, and ${cyan('preact-router')}`,
     }).start()
     shell.exec(
       `cd ${appDirectory} && npm install --silent --save preact preact-compat preact-emotion preact-router emotion > /dev/null`,
@@ -106,8 +109,11 @@ const installDependencies = appDirectory => {
 const installDevDependencies = appDirectory => {
   return new Promise(resolve => {
     const installDevDepSpinner = ora({
-      text:
-        'Installing @pika/web, typescript, eslint, serve, babel, and other dev dependencies',
+      text: `${bold().white('create-pika-app')} installing... ${cyan(
+        '@pika/web'
+      )}, ${cyan('typescript')}, ${cyan('eslint')}, ${cyan('serve')}, ${cyan(
+        'babel'
+      )}, and other dev dependencies`,
     }).start()
     shell.exec(
       `cd ${appDirectory} && npm install --silent -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null`,
