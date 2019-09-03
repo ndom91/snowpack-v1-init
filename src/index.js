@@ -5,10 +5,6 @@ const envinfo = require('envinfo')
 var glob = require('glob')
 let fs = require('fs')
 let path = require('path')
-// const gv = require('genversion')
-// const version = require('./version')
-// const packageJson = require('../../package.json')
-// const prompts = require('prompts')
 
 let appName
 let appDirectory = `${process.cwd()}/${appName}`
@@ -37,9 +33,9 @@ const createPikaApp = appName => {
   })
 }
 
-const cdIntoNewApp = () => {
+const initApp = () => {
   return new Promise(resolve => {
-    shell.exec(`cd ${appDirectory} && npm init --yes`, () => {
+    shell.exec(`cd ${appDirectory} && npm init --yes > /dev/null`, () => {
       resolve()
     })
   })
@@ -97,7 +93,7 @@ const installDependencies = () => {
     )
     // console.log(`${process.cwd()}/${appName}`)
     shell.exec(
-      `cd ${appDirectory} && npm install --save preact preact-compat preact-emotion preact-router emotion`,
+      `cd ${appDirectory} && npm install --save preact preact-compat preact-emotion preact-router emotion > /dev/null`,
       () => {
         console.log(green('\nFinished installing dependencies\n'))
         resolve()
@@ -115,7 +111,7 @@ const installDevDependencies = () => {
     )
     // console.log(`${process.cwd()}/${appName}`)
     shell.exec(
-      `cd ${appDirectory} && npm install -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript`,
+      `cd ${appDirectory} && npm install -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null`,
       () => {
         console.log(green('\nFinished installing dev dependencies\n'))
         resolve()
@@ -125,7 +121,6 @@ const installDevDependencies = () => {
 }
 
 const cli = async () => {
-  let appName
   const program = new commander.Command(process.argv[2])
     .version('0.1.0')
     .arguments('<project-directory>')
@@ -189,6 +184,10 @@ const cli = async () => {
     console.log(`Run ${cyan(`${program.name()} --help`)} to see all options.`)
   }
 
+  console.log(path.dirname(fs.realpathSync(__dirname)))
+  console.log(path.dirname(fs.realpathSync(__filename)))
+  console.log(process.cwd())
+
   let success = await createPikaApp(appName)
   if (!success && typeof appName !== undefined) {
     console.log(
@@ -198,7 +197,7 @@ const cli = async () => {
     )
     return false
   }
-  await cdIntoNewApp()
+  await initApp()
   await copyTemplates()
   await installDependencies(appName)
   await installDevDependencies(appName)
