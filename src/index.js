@@ -142,7 +142,7 @@ const installDevDependencies = appDirectory => {
 const run = async () => {
   let appName
   const program = new commander.Command(process.argv[2])
-    .version('0.1.0')
+    .version('1.0.0')
     .arguments('<project-directory>')
     .usage(`${green('<project-directory>')} [options]`)
     .action(name => {
