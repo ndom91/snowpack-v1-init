@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prettier": "prettier --write **/*.{js,ts,tsx,json,css,scss,md,yml}",
-    "lint": "eslint --ext .js,.jsx src",
+    "lint": "eslint -c ./.eslintrc.js --ext .js,.jsx src/*",
     "test": "npm run prettier && npm run lint",
     "build": "rm -rf pkg && pika build",
     "publish": "pika publish",
@@ -86,6 +86,9 @@
       ]
     ]
   },
+  "eslintIgnore": [
+    "assets/**/*"
+  ],
   "prettier": {
     "tabWidth": 2,
     "singleQuote": true,
@@ -98,8 +101,8 @@
     }
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix src",
+    "/src/*.js": [
+      "eslint -c ./.eslintrc.js --fix ./src/*",
       "prettier --write",
       "git add"
     ]
