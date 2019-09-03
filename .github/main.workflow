@@ -21,9 +21,9 @@ action "Master" {
   args = "branch master"
 }
 
-action "Publish" {
-  needs = "Master"
-  uses = "actions/npm@master"
-  args = "publish --access public"
-  secrets = ["NPM_TOKEN"]
-}
+# action "Publish" {
+  # needs = "Master"
+  # uses = "actions/npm@master"
+  # args = "publish --access public"
+  # secrets = ["NPM_TOKEN"]
+# }
