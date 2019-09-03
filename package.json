@@ -1,6 +1,6 @@
 {
   "name": "create-pika-app",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Bootstrap a Preact/Pika/Typescript web application without the hassle!",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "lint": "eslint --ext .js,.jsx src",
     "test": "npm run prettier && npm run lint",
     "build": "rm -rf pkg && pika build",
-    "publish": "pika publish",
+    "publish": "pika publish -- --no-release-draft",
     "version": "npx @pika/pack"
   },
   "repository": {
@@ -91,6 +91,9 @@
         }
       ]
     ]
+  },
+  "np": {
+    "releaseDraft": false
   },
   "prettier": {
     "tabWidth": 2,
