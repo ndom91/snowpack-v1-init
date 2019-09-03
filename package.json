@@ -79,15 +79,9 @@
         "@pika/plugin-build-node"
       ],
       [
-        "pika-plugin-pkg-node",
+        "@pika/plugin-simple-bin",
         {
-          "name": "create-pika-app",
-          "assets": [
-            "assets/**/*"
-          ],
-          "targets": [
-            "linux"
-          ]
+          "bin": "create-pika-app"
         }
       ]
     ]
