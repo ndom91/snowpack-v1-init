@@ -1,16 +1,19 @@
 import { h } from 'preact'
 import styled from 'preact-emotion'
-// import Typer from 'reactyper'
+import Typist from '../Typist'
+import text from './text'
 
 const Container = styled('div')`
-  display: 'flex';
+  display: flex;
+  width: 750px;
 `
 
 const Console: preact.FunctionalComponent = () => (
   <div>
     <Container id="console">
-      {/* // @ts-ignore
-      <Typer spool={['🎉 ReacTyper']} /> */}
+      <Typist
+        file={text}
+       />
     </Container>
   </div>
 )

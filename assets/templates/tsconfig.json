@@ -2,19 +2,15 @@
   "compilerOptions": {
     "baseUrl": "src",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "jsxFactory": "h",
     "lib": ["dom", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
     "outDir": "dist",
     "sourceMap": true,
     "strict": true,
     "target": "es5"
   },
-  "exclude": ["node_modules", "web_modules"]
+  "exclude": ["./node_modules", "./web_modules"]
 }

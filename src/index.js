@@ -57,8 +57,23 @@ const initApp = appDirectory => {
         "eslint --ext .ts,.tsx src --ignore 'web_modules/**/*.js'"
       packaged.scripts['prestart'] = 'npm run build'
       packaged.scripts['start'] = 'serve -s dist'
+      const webDependencies = {
+        '@pika/web': {
+          webDependencies: [
+            'emotion',
+            'preact',
+            'preact-compat',
+            'preact-emotion',
+            'preact-router',
+          ],
+        },
+      }
       jsonfile.writeFileSync(`${appDirectory}/package.json`, packaged, {
         spaces: 2,
+      })
+      jsonfile.writeFileSync(`${appDirectory}/package.json`, webDependencies, {
+        spaces: 2,
+        flag: 'a',
       })
     })
   })
@@ -90,7 +105,7 @@ const copyTemplates = appDirectory => {
 const installDependencies = appDirectory => {
   return new Promise(resolve => {
     const installDepSpinner = ora({
-      text: `${bold().white('create-pika-app')} installing... ${cyan(
+      text: ` ${bold().white('create-pika-app')} installing... ${cyan(
         'preact'
       )}, ${cyan('preact-compat')}, ${cyan('emotion')}, ${cyan(
         'preact-emotion'
@@ -109,14 +124,14 @@ const installDependencies = appDirectory => {
 const installDevDependencies = appDirectory => {
   return new Promise(resolve => {
     const installDevDepSpinner = ora({
-      text: `${bold().white('create-pika-app')} installing... ${cyan(
+      text: ` ${bold().white('create-pika-app')} installing... ${cyan(
         '@pika/web'
       )}, ${cyan('typescript')}, ${cyan('eslint')}, ${cyan('serve')}, ${cyan(
         'babel'
       )}, and other dev dependencies`,
     }).start()
     shell.exec(
-      `cd ${appDirectory} && npm install --silent -D @babel/cli @babel/core @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null`,
+      `cd ${appDirectory} && npm install --silent -D @babel/cli @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/plugin-transform-react-jsx @babel/preset-env @babel/preset-react @babel/preset-typescript @pika/web @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web babel-plugin-module-resolver concurrently copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null`,
       () => {
         installDevDepSpinner.succeed()
         resolve()

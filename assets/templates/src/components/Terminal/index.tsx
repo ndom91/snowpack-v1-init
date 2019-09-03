@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import Console from '../Console/'
+import Console from '../Console'
 
 const Terminal: preact.FunctionalComponent = () => (
   <div className="terminal-window">
