@@ -172,11 +172,11 @@ const cli = async () => {
   }
 
   let appDirectory = `${process.cwd()}/${appName}`
-  if (path.isAbsolute(appName)) {
+  if (typeof appname === 'string' && path.isAbsolute(appName)) {
     appDirectory = appName
   }
 
-  if (typeof appName === undefined) {
+  if (typeof appName === 'undefined') {
     console.error('Please specify the project name:')
     console.log(`  ${cyan(program.name())} ${green('<project-directory>')}`)
     console.log()
