@@ -1,8 +1,7 @@
 const commander = require('commander')
 const shell = require('shelljs')
-const { red, cyan, green, bold } = require('kleur')
+const { cyan, green, bold } = require('kleur')
 const envinfo = require('envinfo')
-var glob = require('glob')
 let fs = require('fs')
 let path = require('path')
 
@@ -38,26 +37,27 @@ const initApp = appDirectory => {
 }
 
 const copyTemplates = appDirectory => {
-  var getDirectories = function(src, callback) {
-    glob(src + '/**/*', callback)
-  }
-  let globPath
+  const copyDirectoryRecursiveSync = (source, target, move) => {
+    if (!fs.lstatSync(source).isDirectory()) return
 
-  try {
-    fs.statSync(
-      `${appDirectory}/node_modules/create-pika-app/assets/templates/README.md`
-    )
-    globPath = `${appDirectory}/node_modules/create-pika-app/assets/templates`
-  } catch (e) {
-    globPath = `${appDirectory}/assets/templates/`
+    var operation = move ? fs.renameSync : fs.copyFileSync
+    fs.readdirSync(source).forEach(function(itemName) {
+      var sourcePath = path.join(source, itemName)
+      var targetPath = path.join(target, itemName)
+
+      if (fs.lstatSync(sourcePath).isDirectory()) {
+        fs.mkdirSync(targetPath)
+        copyDirectoryRecursiveSync(sourcePath, targetPath)
+      } else {
+        operation(sourcePath, targetPath)
+      }
+    })
   }
-  getDirectories(globPath, (err, res) => {
-    if (err) {
-      console.error(red(`There was an error copying the template files`))
-    } else {
-      console.log(res)
-    }
-  })
+
+  const currentDir = path.dirname(fs.realpathSync(__dirname))
+
+  copyDirectoryRecursiveSync(`${currentDir}/assets/templates/`, appDirectory)
+
   // return new Promise(resolve => {
   //   let promises = []
   //   Object.keys(templates).forEach((fileName, i) => {
@@ -116,7 +116,7 @@ const installDevDependencies = appDirectory => {
   })
 }
 
-const cli = async () => {
+const run = async () => {
   let appName
   const program = new commander.Command(process.argv[2])
     .version('0.1.0')
@@ -186,9 +186,9 @@ const cli = async () => {
     console.log(`Run ${cyan(`${program.name()} --help`)} to see all options.`)
   }
 
-  console.log(path.dirname(fs.realpathSync(__dirname)))
-  console.log(path.dirname(fs.realpathSync(__filename)))
-  console.log(process.cwd())
+  // console.log(path.dirname(fs.realpathSync(__dirname)))
+  // console.log(path.dirname(fs.realpathSync(__filename)))
+  // console.log(process.cwd())
 
   let success = await createPikaApp(appName)
   if (!success && typeof appName !== undefined) {
@@ -206,4 +206,4 @@ const cli = async () => {
   console.log(bold().green('All done 🎉'))
 }
 
-export default cli()
+export default run()
