@@ -87,6 +87,9 @@
       ]
     ]
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "prettier": {
     "tabWidth": 2,
     "singleQuote": true,
