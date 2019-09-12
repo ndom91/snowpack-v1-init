@@ -1,0 +1,36 @@
+{
+  "packageManifest": {
+    "@pika/web": {
+      "webDependencies": [
+        "emotion",
+        "preact",
+        "preact-compat",
+        "preact-emotion",
+        "preact-router"
+      ]
+    },
+    "scripts": {
+      "build": "npm run build:ts && npm run build:esm && npm run build:js && npm run copy",
+      "build:esm": "pika-web --dest dist/web_modules",
+      "build:js": "babel dist -d dist --ignore \"dist/web_modules/*.js\"",
+      "build:js:watch": "babel dist -d dist --ignore \"dist/web_modules/*.js\" --watch",
+      "build:ts": "rm -rf dist && tsc",
+      "build:ts:watch": "tsc -w",
+      "copy": "copyfiles \"src/*.html\" \"src/**/*.gif\" \"src/*.css\" dist -u 1",
+      "dev": "npm run build && concurrently \"npm run build:ts:watch\" \"npm run build:js:watch\" \"serve -s dist\"",
+      "lint": "eslint --ext .ts,.tsx src --ignore \"web_modules/**/*.js\"",
+      "prestart": "npm run build",
+      "start": "serve -s dist"
+    }
+  },
+  "commands": {
+    "install": {
+      "exec": "npm install --silent --save preact preact-compat preact-emotion preact-router emotion@9.2.12 > /dev/null",
+      "output": " \u001b[1m\u001b[37mcreate-pika-app\u001b[22m\u001b[39m installing... \u001b[36mpreact\u001b[39m, \u001b[36mpreact-compat\u001b[39m, \u001b[36memotion\u001b[39m, \u001b[36mpreact-emotion\u001b[39m, and \u001b[36mpreact-router\u001b[39m"
+    },
+    "install -D": {
+      "exec": "npm install --silent -D @babel/cli @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/plugin-transform-react-jsx @babel/preset-env @babel/preset-react @babel/preset-typescript @pika/web@0.4.2 @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web babel-plugin-module-resolver concurrently copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null",
+      "output": " \u001b[1m\u001b[37mcreate-pika-app\u001b[22m\u001b[39m installing... \u001b[36m@pika/web\u001b[39m, \u001b[36mtypescript\u001b[39m, \u001b[36meslint\u001b[39m, \u001b[36mserve\u001b[39m, \u001b[36mbabel\u001b[39m, and other dev dependencies"
+    }
+  }
+}
