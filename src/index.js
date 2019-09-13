@@ -4,7 +4,6 @@ const shell = require('shelljs')
 const ora = require('ora')
 const jsonfile = require('jsonfile')
 const { red, cyan, green, bold } = require('kleur') // eslint-disable-line
-const envinfo = require('envinfo')
 let fs = require('fs')
 let path = require('path')
 let url = require('url')
