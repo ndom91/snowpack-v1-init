@@ -2,6 +2,8 @@
 
 Bootstrap a [`@pikapkg/web`](https://github.com/pikapkg/web) application in no time!
 
+![Usage Gif](cpa.gif)
+
 ## 🛫 Quick Start
 
 ```
