@@ -25,12 +25,10 @@
   },
   "commands": {
     "install": {
-      "exec": "npm install --silent --save preact preact-compat preact-emotion preact-router emotion@9.2.12 > /dev/null",
-      "output": " \u001b[1m\u001b[37mcreate-pika-app\u001b[22m\u001b[39m installing... \u001b[36mpreact\u001b[39m, \u001b[36mpreact-compat\u001b[39m, \u001b[36memotion\u001b[39m, \u001b[36mpreact-emotion\u001b[39m, and \u001b[36mpreact-router\u001b[39m"
+      "exec": "npm install --silent --save preact preact-compat preact-emotion preact-router emotion@9.2.12 > /dev/null"
     },
     "install -D": {
-      "exec": "npm install --silent -D @babel/cli @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/plugin-transform-react-jsx @babel/preset-env @babel/preset-react @babel/preset-typescript @pika/web@0.4.2 @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web babel-plugin-module-resolver concurrently copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null",
-      "output": " \u001b[1m\u001b[37mcreate-pika-app\u001b[22m\u001b[39m installing... \u001b[36m@pika/web\u001b[39m, \u001b[36mtypescript\u001b[39m, \u001b[36meslint\u001b[39m, \u001b[36mserve\u001b[39m, \u001b[36mbabel\u001b[39m, and other dev dependencies"
+      "exec": "npm install --silent -D @babel/cli @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/plugin-transform-react-jsx @babel/preset-env @babel/preset-react @babel/preset-typescript @pika/web@0.4.2 @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web babel-plugin-module-resolver concurrently copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null"
     }
   }
 }
