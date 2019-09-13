@@ -31,7 +31,7 @@ The example application will then be available at `localhost:5000`!
 2. Install the project  
    `cd create-pika-app && npm install`
 
-To test execution of the binary:  
+To test execution of the binary:
 
 3. Build the binary
    `npm run build`
@@ -39,12 +39,11 @@ To test execution of the binary:
 4. Generate a test application
    `node pkg/dist-node/index.bin.js generated-test-app-name`
 
-
 ### 🙏 Special Thanks
 
 [`@pika/web`](https://pika.dev)  
 [`@pika/pkg`](https://pika.dev)  
-[`preact`](https://preactjs.com)  
+[`preact`](https://preactjs.com)
 
 ---
 

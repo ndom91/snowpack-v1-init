@@ -1,5 +1,5 @@
 const commander = require('commander')
-const inquirer = require('inquirer');
+const inquirer = require('inquirer')
 const shell = require('shelljs')
 const ora = require('ora')
 const jsonfile = require('jsonfile')
@@ -19,11 +19,14 @@ const createPikaApp = appName => {
           resolve(true)
         })
       } else {
-        shell.exec(`cd ${process.cwd()} && mkdir ${appName} > /dev/null`, () => {
-          console.log(green().bold('\nWelcome to create-pika-app ✨\n'))
-          console.log(`Creating app: ${cyan().bold(appName)}`)
-          resolve(true)
-        })
+        shell.exec(
+          `cd ${process.cwd()} && mkdir ${appName} > /dev/null`,
+          () => {
+            console.log(green().bold('\nWelcome to create-pika-app ✨\n'))
+            console.log(`Creating app: ${cyan().bold(appName)}`)
+            resolve(true)
+          }
+        )
       }
     }
   })
@@ -119,7 +122,9 @@ export const run = async () => {
         `    If you have any problems, do not hesitate to file an issue:`
       )
       console.log(
-        `      ${cyan('https://github.com/ndom91/create-pika-app/issues/new')}\n`
+        `      ${cyan(
+          'https://github.com/ndom91/create-pika-app/issues/new'
+        )}\n`
       )
     })
     .parse(process.argv)
@@ -134,7 +139,9 @@ export const run = async () => {
   }
 
   if (!program.template) {
-    console.log(`No template chosen, please make a choice for ${cyan(appName)}\n`)
+    console.log(
+      `No template chosen, please make a choice for ${cyan(appName)}\n`
+    )
     const output = []
     const templates = fs.readdirSync(`${process.cwd()}/assets`)
     templates.forEach(template => {
@@ -147,14 +154,12 @@ export const run = async () => {
       pageSize: output.length + 2,
       choices: output.map(template => ({
         name: cyan(template),
-        value: template
-      }))
+        value: template,
+      })),
     }
-    await inquirer
-      .prompt(prompt)
-      .then(answers => {
-        templateChoice = answers.templates
-      })
+    await inquirer.prompt(prompt).then(answers => {
+      templateChoice = answers.templates
+    })
   }
 
   let appDirectory = `${process.cwd()}/${appName}`
