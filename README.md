@@ -31,16 +31,20 @@ The example application will then be available at `localhost:5000`!
 2. Install the project  
    `cd create-pika-app && npm install`
 
-3. Link the binary  
-   `npm link`
+To test execution of the binary:  
 
-4. You should now be able to run `create-pika-app` from the command line to execute our `index.js`
+3. Build the binary
+   `npm run build`
+
+4. Generate a test application
+   `node pkg/dist-node/index.bin.js generated-test-app-name`
+
 
 ### 🙏 Special Thanks
 
-[`preact`](https://preactjs.com)  
 [`@pika/web`](https://pika.dev)  
-[`dangodev/pika-web-preact`](https://github.com/dangodev/pika-web-react)
+[`@pika/pkg`](https://pika.dev)  
+[`preact`](https://preactjs.com)  
 
 ---
 
