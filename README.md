@@ -1,12 +1,12 @@
 # 📦✨ create-pika-app
 
-Bootstrap a [`@pikapkg/web`](https://github.com/pikapkg/web) application in no time!
+> Bootstrap a [`@pikapkg/web`](https://github.com/pikapkg/web) application in no time!
 
 ![Usage Gif](cpa.gif)
 
 ## 🛫 Quick Start
 
-```
+```js
 npx create-pika-app awesome-new-app --template app-preact
 cd awesome-new-app
 npm run dev
@@ -64,6 +64,8 @@ To test execution of the binary:
 
 4. Generate a test application
    `node pkg/dist-node/index.bin.js generated-test-app-name`
+   
+5. Fork, commit & push your changes, and then make a pull request back to this repository!
 
 ### 🙏 Special Thanks
 
