@@ -6,6 +6,7 @@ const { red, cyan, green, bold } = require('kleur') // eslint-disable-line
 const envinfo = require('envinfo')
 let fs = require('fs')
 let path = require('path')
+let url = require('url')
 
 const createPikaApp = appName => {
   return new Promise(resolve => {
@@ -35,51 +36,26 @@ const createPikaApp = appName => {
   })
 }
 
-const initApp = appDirectory => {
+const initApp = (appDirectory, appConfig) => {
   return new Promise(resolve => {
     shell.exec(`cd ${appDirectory} && npm init --yes > /dev/null`, () => {
       const packaged = jsonfile.readFileSync(`${appDirectory}/package.json`)
-      packaged.scripts['build'] =
-        'npm run build:ts && npm run build:esm && npm run build:js && npm run copy'
-      packaged.scripts['build:esm'] = 'pika-web --dest dist/web_modules'
-      packaged.scripts['build:js'] =
-        "babel dist -d dist --ignore 'dist/web_modules/*.js'"
-      packaged.scripts['build:js:watch'] =
-        "babel dist -d dist --ignore 'dist/web_modules/*.js' --watch"
-      packaged.scripts['build:ts'] = 'rm -rf dist && tsc'
-      packaged.scripts['build:ts:watch'] = 'tsc -w'
-      packaged.scripts['copy'] =
-        "copyfiles 'src/*.html' 'src/**/*.gif' 'src/*.css' dist -u 1"
-      packaged.scripts['dev'] =
-        "npm run build && concurrently 'npm run build:ts:watch' 'npm run build:js:watch' 'serve -s dist'"
-      packaged.scripts['lint'] =
-        "eslint --ext .ts,.tsx src --ignore 'web_modules/**/*.js'"
-      packaged.scripts['prestart'] = 'npm run build'
-      packaged.scripts['start'] = 'serve -s dist'
-      jsonfile.writeFileSync(`${appDirectory}/package.json`, packaged, {
-        spaces: 2,
-      })
-      const scriptsPackaged = jsonfile.readFileSync(
-        `${appDirectory}/package.json`
+      jsonfile.writeFileSync(
+        `${appDirectory}/package.json`,
+        {
+          ...packaged,
+          ...appConfig.packageManifest,
+        },
+        {
+          spaces: 2,
+        }
       )
-      scriptsPackaged['@pika/web'] = {
-        webDependencies: [
-          'emotion',
-          'preact',
-          'preact-compat',
-          'preact-emotion',
-          'preact-router',
-        ],
-      }
-      jsonfile.writeFileSync(`${appDirectory}/package.json`, scriptsPackaged, {
-        spaces: 2,
-      })
       resolve()
     })
   })
 }
 
-const copyTemplates = appDirectory => {
+const copyTemplates = (appDirectory, appTemplateLoc) => {
   const copyDirectoryRecursiveSync = (source, target, move) => {
     if (!fs.lstatSync(source).isDirectory()) return
 
@@ -96,23 +72,16 @@ const copyTemplates = appDirectory => {
       }
     })
   }
-
-  const currentDir = path.dirname(fs.realpathSync(__dirname))
-
-  copyDirectoryRecursiveSync(`${currentDir}/assets/templates/`, appDirectory)
+  copyDirectoryRecursiveSync(appTemplateLoc, appDirectory)
 }
 
-const installDependencies = appDirectory => {
+const installDependencies = (appDirectory, appConfig) => {
   return new Promise(resolve => {
     const installDepSpinner = ora({
-      text: ` ${bold().white('create-pika-app')} installing... ${cyan(
-        'preact'
-      )}, ${cyan('preact-compat')}, ${cyan('emotion')}, ${cyan(
-        'preact-emotion'
-      )}, and ${cyan('preact-router')}`,
+      text: appConfig.commands['install'].output,
     }).start()
     shell.exec(
-      `cd ${appDirectory} && npm install --silent --save preact preact-compat preact-emotion preact-router emotion@9.2.12 > /dev/null`,
+      `cd ${appDirectory} && ${appConfig.commands['install'].exec}`,
       () => {
         installDepSpinner.succeed()
         resolve()
@@ -121,17 +90,13 @@ const installDependencies = appDirectory => {
   })
 }
 
-const installDevDependencies = appDirectory => {
+const installDevDependencies = (appDirectory, appConfig) => {
   return new Promise(resolve => {
     const installDevDepSpinner = ora({
-      text: ` ${bold().white('create-pika-app')} installing... ${cyan(
-        '@pika/web'
-      )}, ${cyan('typescript')}, ${cyan('eslint')}, ${cyan('serve')}, ${cyan(
-        'babel'
-      )}, and other dev dependencies`,
+      text: appConfig.commands['install -D'].output,
     }).start()
     shell.exec(
-      `cd ${appDirectory} && npm install --silent -D @babel/cli @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/plugin-transform-react-jsx @babel/preset-env @babel/preset-react @babel/preset-typescript @pika/web@0.4.2 @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-import-pika-web babel-plugin-module-resolver concurrently copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null`,
+      `cd ${appDirectory} && ${appConfig.commands['install -D'].exec}`,
       () => {
         installDevDepSpinner.succeed()
         resolve()
@@ -140,7 +105,7 @@ const installDevDependencies = appDirectory => {
   })
 }
 
-const run = async () => {
+export const run = async () => {
   let appName
   const program = new commander.Command(process.argv[2])
     .version('1.0.0')
@@ -219,14 +184,20 @@ const run = async () => {
     )
     return false
   }
-  await initApp(appDirectory)
-  await copyTemplates(appDirectory)
-  await installDependencies(appDirectory)
-  await installDevDependencies(appDirectory)
+  console.log(import.meta.url)
+  const appConfigLoc = url.fileURLToPath(
+    url.resolve(import.meta.url, '../assets/app-preact/config.json')
+  )
+  const appConfig = require(appConfigLoc)
+  const appTemplateLoc = url.fileURLToPath(
+    url.resolve(import.meta.url, '../assets/app-preact/template')
+  )
+  await initApp(appDirectory, appConfig)
+  await copyTemplates(appDirectory, appTemplateLoc)
+  await installDependencies(appDirectory, appConfig)
+  await installDevDependencies(appDirectory, appConfig)
   console.log()
   console.log(`Application ready at ${bold(appDirectory)}!`)
   console.log()
   console.log(green('✔️ ') + bold(' Complete!'))
 }
-
-export default run()
