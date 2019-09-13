@@ -1,7 +1,8 @@
 const commander = require('commander')
+const inquirer = require('inquirer');
 const shell = require('shelljs')
 const ora = require('ora')
-var jsonfile = require('jsonfile')
+const jsonfile = require('jsonfile')
 const { red, cyan, green, bold } = require('kleur') // eslint-disable-line
 const envinfo = require('envinfo')
 let fs = require('fs')
@@ -12,26 +13,18 @@ const createPikaApp = appName => {
   return new Promise(resolve => {
     if (appName) {
       if (path.isAbsolute(appName)) {
-        shell.exec(`mkdir ${appName}`, () => {
-          console.log()
-          console.log(green().bold('Welcome to create-pika-app'))
-          console.log()
-          console.log(`Creating app: ${cyan().bold(appName)}\n`)
+        shell.exec(`mkdir ${appName} > /dev/null`, () => {
+          console.log(green().bold('\nWelcome to create-pika-app ✨\n'))
+          console.log(`Creating app: ${cyan().bold(appName)}`)
           resolve(true)
         })
       } else {
-        shell.exec(`cd ${process.cwd()} && mkdir ${appName}`, () => {
-          console.log(green().bold('Welcome to create-pika-app'))
-          console.log()
-          console.log(`Creating app: ${cyan().bold(appName)}\n`)
+        shell.exec(`cd ${process.cwd()} && mkdir ${appName} > /dev/null`, () => {
+          console.log(green().bold('\nWelcome to create-pika-app ✨\n'))
+          console.log(`Creating app: ${cyan().bold(appName)}`)
           resolve(true)
         })
       }
-    } else {
-      console.log(bold().red('\nNo app name was provided.'))
-      console.log(bold('\nUsage:'))
-      console.log('\ncreate-pika-app ', 'app-name\n'.cyan)
-      resolve(false)
     }
   })
 }
@@ -107,57 +100,61 @@ const installDevDependencies = (appDirectory, appConfig) => {
 
 export const run = async () => {
   let appName
+  let templateChoice
   const program = new commander.Command(process.argv[2])
     .version('1.0.0')
+    .option('-t, --template [template]', 'template choice')
     .arguments('<project-directory>')
     .usage(`${green('<project-directory>')} [options]`)
-    .action(name => {
+    .action((name, options) => {
+      // console.log(name, options, options.template)
       appName = name
+      templateChoice = options.template
     })
     .option('--verbose', 'print additional logs')
-    .option('--info', 'print environment debug info')
     .allowUnknownOption()
     .on('--help', () => {
-      console.log(`    Only ${green('<project-directory>')} is required.`)
-      console.log()
+      console.log(`    Only ${green('<project-directory>')} is required.\n`)
       console.log(
         `    If you have any problems, do not hesitate to file an issue:`
       )
       console.log(
-        `      ${cyan('https://github.com/ndom91/create-pika-app/issues/new')}`
+        `      ${cyan('https://github.com/ndom91/create-pika-app/issues/new')}\n`
       )
-      console.log()
     })
     .parse(process.argv)
 
-  if (program.info) {
-    console.log(bold('\nEnvironment Info:'))
-    return envinfo
-      .run(
-        {
-          System: ['OS', 'CPU'],
-          Binaries: ['Node', 'npm'],
-          Browsers: [
-            'Chrome',
-            'Edge',
-            'Internet Explorer',
-            'Firefox',
-            'Safari',
-          ],
-          npmPackages: [
-            'preact',
-            'preact-compat',
-            '@pika/web',
-            'preact-emotion',
-          ],
-          npmGlobalPackages: ['create-pika-app'],
-        },
-        {
-          duplicates: true,
-          showNotFound: true,
-        }
-      )
-      .then(console.log)
+  if (typeof appName === 'undefined') {
+    console.error('Please specify the project name:')
+    console.log(`  ${cyan(program.name())} ${green('<project-directory>')}\n`)
+    console.log('For example:')
+    console.log(`  ${cyan(program.name())} ${green('my-pika-app')}\n`)
+    console.log(`Run ${cyan(`${program.name()} --help`)} to see all options.`)
+    return false
+  }
+
+  if (!program.template) {
+    console.log(`No template chosen, please make a choice for ${cyan(appName)}\n`)
+    const output = []
+    const templates = fs.readdirSync(`${process.cwd()}/assets`)
+    templates.forEach(template => {
+      output.push(template)
+    })
+    const prompt = {
+      type: 'list',
+      name: 'templates',
+      message: 'Please choose a template',
+      pageSize: output.length + 2,
+      choices: output.map(template => ({
+        name: cyan(template),
+        value: template
+      }))
+    }
+    await inquirer
+      .prompt(prompt)
+      .then(answers => {
+        templateChoice = answers.templates
+      })
   }
 
   let appDirectory = `${process.cwd()}/${appName}`
@@ -165,17 +162,10 @@ export const run = async () => {
     appDirectory = appName
   }
 
-  if (typeof appName === 'undefined') {
-    console.error('Please specify the project name:')
-    console.log(`  ${cyan(program.name())} ${green('<project-directory>')}`)
-    console.log()
-    console.log('For example:')
-    console.log(`  ${cyan(program.name())} ${green('my-pika-app')}`)
-    console.log()
-    console.log(`Run ${cyan(`${program.name()} --help`)} to see all options.`)
-  }
-
   let success = await createPikaApp(appName)
+
+  console.log(`Template: ${bold().cyan(templateChoice)}\n`)
+
   if (!success && typeof appName !== undefined) {
     console.log(
       bold().red(
@@ -184,20 +174,17 @@ export const run = async () => {
     )
     return false
   }
-  console.log(import.meta.url)
   const appConfigLoc = url.fileURLToPath(
-    url.resolve(import.meta.url, '../assets/app-preact/config.json')
+    url.resolve(import.meta.url, `../assets/${templateChoice}/config.json`)
   )
   const appConfig = require(appConfigLoc)
   const appTemplateLoc = url.fileURLToPath(
-    url.resolve(import.meta.url, '../assets/app-preact/template')
+    url.resolve(import.meta.url, `../assets/${templateChoice}/template`)
   )
   await initApp(appDirectory, appConfig)
   await copyTemplates(appDirectory, appTemplateLoc)
   await installDependencies(appDirectory, appConfig)
   await installDevDependencies(appDirectory, appConfig)
-  console.log()
-  console.log(`Application ready at ${bold(appDirectory)}!`)
-  console.log()
+  console.log(`\nApplication ready at ${bold(appDirectory)}!\n`)
   console.log(green('✔️ ') + bold(' Complete!'))
 }
