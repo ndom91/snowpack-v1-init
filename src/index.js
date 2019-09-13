@@ -103,22 +103,22 @@ const installDevDependencies = (appDirectory, appConfig) => {
 export const run = async () => {
   let appName
   let templateChoice
-  const program = new commander.Command(process.argv[2])
-    .version('1.0.0')
-    .option('-t, --template [template]', 'template choice')
-    .arguments('<project-directory>')
-    .usage(`${green('<project-directory>')} [options]`)
+  const program = new commander.Command()
+    .version('1.1.2')
+    .option('-t, --template [template]', 'template choice (optional)')
+    .arguments('<project-name>')
+    .usage(`--template [template] ${green('<project-name>')}`)
     .action((name, options) => {
-      // console.log(name, options, options.template)
       appName = name
       templateChoice = options.template
     })
-    .option('--verbose', 'print additional logs')
     .allowUnknownOption()
     .on('--help', () => {
-      console.log(`    Only ${green('<project-directory>')} is required.\n`)
+      console.log(`\nExamples: `)
+      console.log(`  $ create-pika-app --template app-preact my-new-app `)
+      console.log(`  $ create-pika-app my-new-app `)
       console.log(
-        `    If you have any problems, do not hesitate to file an issue:`
+        `\n    If you have any problems, do not hesitate to file an issue:`
       )
       console.log(
         `      ${cyan(
