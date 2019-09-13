@@ -2,16 +2,24 @@
 
 Bootstrap a Preact / Typescript / Pika application without all the hassle
 
-#### 🌲 Environment:
+## 🌲 Available Templates
 
-- [x] Preact
-- [x] Preact-router
-- [x] Preact-emotion
-- [x] Typescript
-- [x] Babel
-- [x] ESLint
-- [x] Prettier
-- [x] @Pika/Web
+1. `app-preact`
+
+Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal-homepage) built on the following stack: 
+
+<img src="https://github.com/ndom91/terminal-homepage/raw/develop/terminal.gif" align="right"></img>
+
+- Preact
+- Preact-router
+- Preact-emotion
+- Typescript
+- Babel
+- ESLint
+- Prettier
+- @Pika/Web
+
+2. Your next app? :)
 
 ## 🛫 Getting Started
 
