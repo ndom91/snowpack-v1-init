@@ -27,11 +27,6 @@ const createPikaApp = appName => {
           resolve(true)
         })
       }
-    } else {
-      console.log(bold().red('\nNo app name was provided.'))
-      console.log(bold('\nUsage:'))
-      console.log('\ncreate-pika-app ', 'app-name\n'.cyan)
-      resolve(false)
     }
   })
 }
@@ -109,13 +104,13 @@ export const run = async () => {
   let appName
   const program = new commander.Command(process.argv[2])
     .version('1.0.0')
+    .option('-t, --template <type>', 'template choice')
     .arguments('<project-directory>')
     .usage(`${green('<project-directory>')} [options]`)
     .action(name => {
       appName = name
     })
     .option('--verbose', 'print additional logs')
-    .option('--info', 'print environment debug info')
     .allowUnknownOption()
     .on('--help', () => {
       console.log(`    Only ${green('<project-directory>')} is required.`)
@@ -130,34 +125,8 @@ export const run = async () => {
     })
     .parse(process.argv)
 
-  if (program.info) {
-    console.log(bold('\nEnvironment Info:'))
-    return envinfo
-      .run(
-        {
-          System: ['OS', 'CPU'],
-          Binaries: ['Node', 'npm'],
-          Browsers: [
-            'Chrome',
-            'Edge',
-            'Internet Explorer',
-            'Firefox',
-            'Safari',
-          ],
-          npmPackages: [
-            'preact',
-            'preact-compat',
-            '@pika/web',
-            'preact-emotion',
-          ],
-          npmGlobalPackages: ['create-pika-app'],
-        },
-        {
-          duplicates: true,
-          showNotFound: true,
-        }
-      )
-      .then(console.log)
+  if (program.template) {
+    console.log(program.template)
   }
 
   let appDirectory = `${process.cwd()}/${appName}`
