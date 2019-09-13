@@ -1,14 +1,39 @@
 # 📦✨ create-pika-app
 
-Bootstrap a Preact / Typescript / Pika application without all the hassle
+Bootstrap a [`@pikapkg/web`](https://github.com/pikapkg/web) application in no time!
 
-## 🌲 Available Templates
+## 🛫 Quick Start
+
+```
+npx create-pika-app awesome-new-app --template app-preact
+cd awesome-new-app
+npm run dev
+```
+
+The example application will then be available at [`localhost:5000`](http://127.0.0.1:5000)
+
+## 💻 Usage
+
+```js
+Usage: create-pika-app --template [template] <project-name>
+
+Options:
+  -V, --version              output the version number
+  -t, --template [template]  template choice (optional)
+  -h, --help                 output usage information
+
+Examples:
+  $ create-pika-app --template app-preact my-new-app
+  $ create-pika-app my-new-app
+```
+
+## 🌲 Templates
 
 1. `app-preact`
 
-Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal-homepage) built on the following stack: 
+<img width="400px" src="https://github.com/ndom91/terminal-homepage/raw/develop/terminal.gif" align="right"></img>
 
-<img src="https://github.com/ndom91/terminal-homepage/raw/develop/terminal.gif" align="right"></img>
+Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal-homepage) built on the following stack: 
 
 - Preact
 - Preact-router
@@ -19,17 +44,8 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 - Prettier
 - @Pika/Web
 
-2. Your next app? :)
+2. `Your next app` 😎
 
-## 🛫 Getting Started
-
-```
-npx create-pika-app myNewAppName
-cd myNewAppName
-npm run dev
-```
-
-The example application will then be available at `localhost:5000`!
 
 ## 🚧 Contributing
 
