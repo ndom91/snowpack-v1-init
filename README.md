@@ -35,7 +35,7 @@ Examples:
 
 <img width="400px" src="https://github.com/ndom91/terminal-homepage/raw/develop/terminal.gif" align="right"></img>
 
-Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal-homepage) built on the following stack: 
+Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal-homepage) built on the following stack:
 
 - Preact
 - Preact-router
@@ -49,7 +49,6 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 2. `Your next app` 😎
 
 If you'd like to have your project included here, just open a PR and we'll take a look!
-
 
 ## 🚧 Contributing
 
@@ -66,9 +65,7 @@ To test execution of the binary:
 
 4. Generate a test application
    `node pkg/dist-node/index.bin.js generated-test-app-name`
-   
-   
-   
+
 5. Fork, commit & push your changes, and then make a pull request back to this repository!
 
 ### 🙏 Special Thanks

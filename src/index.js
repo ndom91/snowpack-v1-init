@@ -73,7 +73,7 @@ const copyTemplates = (appDirectory, appTemplateLoc) => {
 const installDependencies = (appDirectory, appConfig) => {
   return new Promise(resolve => {
     const installDepSpinner = ora({
-      text: ` ${bold().white('create-pika-app')} installing dependencies...`
+      text: ` ${bold().white('create-pika-app')} installing dependencies...`,
     }).start()
     shell.exec(
       `cd ${appDirectory} && ${appConfig.commands['install'].exec}`,
@@ -88,7 +88,9 @@ const installDependencies = (appDirectory, appConfig) => {
 const installDevDependencies = (appDirectory, appConfig) => {
   return new Promise(resolve => {
     const installDevDepSpinner = ora({
-      text: ` ${bold().white('create-pika-app')} installing dev dependencies...`
+      text: ` ${bold().white(
+        'create-pika-app'
+      )} installing dev dependencies...`,
     }).start()
     shell.exec(
       `cd ${appDirectory} && ${appConfig.commands['install -D'].exec}`,
