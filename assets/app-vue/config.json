@@ -1,0 +1,22 @@
+{
+  "packageManifest": {
+    "@pika/web": {
+      "webDependencies": [
+        "vue/dist/vue.esm.browser.js",
+        "http-vue-loader/src/httpVueLoader.js"
+      ]
+    },
+    "scripts": {
+      "prepare": "pika-web --clean",
+      "start": "serve ./"
+    }
+  },
+  "commands": {
+    "install": {
+      "exec": "npm install --silent --save http-vue-loader vue > /dev/null"
+    },
+    "install -D": {
+      "exec": "npm install --silent -D @pika/web serve > /dev/null"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+/* CSS files add styling rules to your content */
+
+body {
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  margin: 2em;
+}
+h1 {
+  font-style: italic;
+  color: #373fff;
+}
+
+ul {
+  min-height: 100px;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  border: 4px dashed #AAA;
+}
+li {
+  padding: 5px 10px;
+}
+li:nth-child(odd) {
+  box-shadow: 0 0 1px -1px rgba(0,0,0,0.5);
+  background: #f8fbff;
+}
+.btn {
+  font-size: 24px;
+  padding: 10px;
+}
+
+footer {
+  padding: 10px;
+  color: gray;
+  font-style: italic;
+}
