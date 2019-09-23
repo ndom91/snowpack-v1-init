@@ -46,7 +46,17 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 - Prettier
 - @Pika/Web
 
-2. `Your next app` 😎
+2. `app-vue`
+
+<img width="500px" src="https://imgur.com/A2msrQA" align="right"></img>
+
+- Vue
+- http-vue-Loader
+- Basic ToDo List Example
+- Original Source: [glitch.me/pika-web-vue-httpvueloader](https://glitch.com/edit/#!/pika-web-vue-httpvueloader)
+- Thanks: [`@thiagoabreu`](https://github.com/thiagoabreu)
+
+3. `Your next app` 😎
 
 If you'd like to have your project included here, just open a PR and we'll take a look!
 
