@@ -1,7 +1,7 @@
 /* CSS files add styling rules to your content */
 
 body {
-  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  font-family: 'Benton Sans', 'Helvetica Neue', helvetica, arial, sans-serif;
   margin: 2em;
 }
 h1 {
@@ -14,13 +14,13 @@ ul {
   padding: 0;
   list-style: none;
   text-align: left;
-  border: 4px dashed #AAA;
+  border: 4px dashed #aaa;
 }
 li {
   padding: 5px 10px;
 }
 li:nth-child(odd) {
-  box-shadow: 0 0 1px -1px rgba(0,0,0,0.5);
+  box-shadow: 0 0 1px -1px rgba(0, 0, 0, 0.5);
   background: #f8fbff;
 }
 .btn {
