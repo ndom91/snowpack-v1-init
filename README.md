@@ -48,7 +48,7 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 
 2. `app-vue`
 
-<img width="500px" src="https://imgur.com/A2msrQA" align="right"></img>
+<img width="500px" src="https://imgur.com/A2msrQA.png" align="right"></img>
 
 - Vue
 - http-vue-Loader
