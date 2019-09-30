@@ -1,4 +1,4 @@
-# 📦✨ create-pika-app
+# 📦✨ @pika/init
 
 > Bootstrap a [`@pikapkg/web`](https://github.com/pikapkg/web) application in no time!
 
@@ -7,7 +7,7 @@
 ## 🛫 Quick Start
 
 ```js
-npx create-pika-app awesome-new-app --template app-preact
+npx pika-init awesome-new-app --template app-preact
 cd awesome-new-app
 npm run dev
 ```
@@ -17,7 +17,7 @@ The example application will then be available at [`localhost:5000`](http://127.
 ## 💻 Usage
 
 ```js
-Usage: create-pika-app --template [template] <project-name>
+Usage: pika-init --template [template] <project-name>
 
 Options:
   -V, --version              output the version number
@@ -25,8 +25,8 @@ Options:
   -h, --help                 output usage information
 
 Examples:
-  $ create-pika-app --template app-preact my-new-app
-  $ create-pika-app my-new-app
+  $ pika-init --template app-preact my-new-app
+  $ pika-init my-new-app
 ```
 
 ## 🌲 Templates
@@ -52,7 +52,7 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 
 - Vue
 - http-vue-Loader
-- Basic ToDo List Example
+- Basic todo list example
 - Original Source: [glitch.me/pika-web-vue-httpvueloader](https://glitch.com/edit/#!/pika-web-vue-httpvueloader)
 - Thanks: [`@thiagoabreu`](https://github.com/thiagoabreu)
 
@@ -63,10 +63,10 @@ If you'd like to have your project included here, just open a PR and we'll take 
 ## 🚧 Contributing
 
 1. Clone the repo  
-   `git clone https://github.com/ndom91/create-pika-app`
+   `git clone https://github.com/pikapkg/init pika-init`
 
 2. Install the project  
-   `cd create-pika-app && npm install`
+   `cd pika-init && npm install`
 
 To test execution of the binary:
 
