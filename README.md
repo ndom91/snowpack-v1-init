@@ -26,6 +26,7 @@ Options:
 
 Examples:
   $ create-pika-app --template app-preact my-new-app
+  $ create-pika-app --template app-lit my-new-app
   $ create-pika-app my-new-app
 ```
 
@@ -56,7 +57,7 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 - Original Source: [glitch.me/pika-web-vue-httpvueloader](https://glitch.com/edit/#!/pika-web-vue-httpvueloader)
 - Thanks: [`@thiagoabreu`](https://github.com/thiagoabreu)
 
-2. `app-lit`
+3. `app-lit`
 
 <img width="500px" src="https://i.imgur.com/f3oYQJS.png" align="right"></img>
 
