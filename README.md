@@ -56,6 +56,16 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 - Original Source: [glitch.me/pika-web-vue-httpvueloader](https://glitch.com/edit/#!/pika-web-vue-httpvueloader)
 - Thanks: [`@thiagoabreu`](https://github.com/thiagoabreu)
 
+2. `app-lit`
+
+<img width="500px" src="https://i.imgur.com/f3oYQJS.png" align="right"></img>
+
+- LitElement
+- lit-html
+- Basic To do List Example
+- Thanks: [`@thepassle`](https://github.com/thepassle)
+
+
 3. `Your next app` 😎
 
 If you'd like to have your project included here, just open a PR and we'll take a look!
