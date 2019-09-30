@@ -1,7 +1,7 @@
 {
-  "name": "create-pika-app",
+  "name": "@pika/init",
   "version": "1.1.4",
-  "description": "Bootstrap a Preact/Pika/Typescript web application without the hassle!",
+  "description": "Bootstrap a Pika + Preact/Vue/Typescript/etc. application without the hassle!",
   "main": "index.js",
   "scripts": {
     "prettier": "prettier --write **/*.{js,ts,tsx,json,css,scss,md,yml}",
@@ -13,16 +13,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ndom91/create-pika-app.git"
+    "url": "git+https://github.com/pikapkg/init.git"
   },
   "authors": [
     "Nico Domino <hi@ni.co.de>"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ndom91/create-pika-app/issues"
+    "url": "https://github.com/pikapkg/init/issues"
   },
-  "homepage": "https://github.com/ndom91/create-pika-app#readme",
+  "homepage": "https://github.com/pikapkg/init#readme",
   "dependencies": {
     "commander": "^3.0.0",
     "inquirer": "^7.0.0",
@@ -40,7 +40,7 @@
     "bootstrapping"
   ],
   "bin": {
-    "create-pika-app": "dist-node/index.bin.js"
+    "pika-init": "dist-node/index.bin.js"
   },
   "devDependencies": {
     "@pika/pack": "^0.5.0",
