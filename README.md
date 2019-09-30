@@ -26,6 +26,7 @@ Options:
 
 Examples:
   $ pika-init --template app-preact my-new-app
+  $ pika-init --template app-lit my-new-app
   $ pika-init my-new-app
 ```
 
@@ -55,6 +56,16 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 - Basic todo list example
 - Original Source: [glitch.me/pika-web-vue-httpvueloader](https://glitch.com/edit/#!/pika-web-vue-httpvueloader)
 - Thanks: [`@thiagoabreu`](https://github.com/thiagoabreu)
+
+3. `app-lit`
+
+<img width="500px" src="https://i.imgur.com/f3oYQJS.png" align="right"></img>
+
+- LitElement
+- lit-html
+- Basic To do List Example
+- Thanks: [`@thepassle`](https://github.com/thepassle)
+
 
 3. `Your next app` 😎
 
