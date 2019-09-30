@@ -1,0 +1,23 @@
+{
+    "packageManifest": {
+        "@pika/web": {
+            "webDependencies": [
+                "lit-html",
+                "lit-element"
+            ]
+        },
+        "scripts": {
+            "prepare": "pika-web --clean",
+            "start": "serve ./"
+        }
+    },
+    "commands": {
+        "install": {
+            "exec": "npm install --silent --save lit-html lit-element > /dev/null"
+        },
+        "install -D": {
+            "exec": "npm install --silent -D @pika/web serve > /dev/null"
+        }
+    }
+}
+  
