@@ -83,7 +83,7 @@
       [
         "@pika/plugin-simple-bin",
         {
-          "bin": "create-pika-app"
+          "bin": "pika-init"
         }
       ]
     ]
