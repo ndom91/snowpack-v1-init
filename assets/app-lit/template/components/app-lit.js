@@ -1,5 +1,5 @@
 import {LitElement, html, css} from '../web_modules/lit-element.js';
-import './todo-header.js';
+import { header } from './todo-header.js';
 import './todo-footer.js';
 
 export class AppLit extends LitElement {
@@ -46,7 +46,7 @@ export class AppLit extends LitElement {
 
     render() {
         return html`
-            <todo-header name="ToDo"></todo-header>
+            ${header("Todo list")}
             <ul>
                 ${this.todo.map(item => html`
                     <li>${item}</li>
