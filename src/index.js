@@ -13,7 +13,7 @@ const createPikaApp = appName => {
     if (appName) {
       if (path.isAbsolute(appName)) {
         shell.exec(`mkdir ${appName} > /dev/null`, () => {
-          console.log(green().bold('\nWelcome to create-pika-app ✨\n'))
+          console.log(green().bold('\nWelcome to @pika/init ✨\n'))
           console.log(`Creating app: ${cyan().bold(appName)}`)
           resolve(true)
         })
@@ -21,7 +21,7 @@ const createPikaApp = appName => {
         shell.exec(
           `cd ${process.cwd()} && mkdir ${appName} > /dev/null`,
           () => {
-            console.log(green().bold('\nWelcome to create-pika-app ✨\n'))
+            console.log(green().bold('\nWelcome to @pika/init ✨\n'))
             console.log(`Creating app: ${cyan().bold(appName)}`)
             resolve(true)
           }
@@ -73,7 +73,7 @@ const copyTemplates = (appDirectory, appTemplateLoc) => {
 const installDependencies = (appDirectory, appConfig) => {
   return new Promise(resolve => {
     const installDepSpinner = ora({
-      text: ` ${bold().white('create-pika-app')} installing dependencies...`,
+      text: ` ${bold().white('@pika/init')} installing dependencies...`,
     }).start()
     shell.exec(
       `cd ${appDirectory} && ${appConfig.commands['install'].exec}`,
@@ -88,9 +88,7 @@ const installDependencies = (appDirectory, appConfig) => {
 const installDevDependencies = (appDirectory, appConfig) => {
   return new Promise(resolve => {
     const installDevDepSpinner = ora({
-      text: ` ${bold().white(
-        'create-pika-app'
-      )} installing dev dependencies...`,
+      text: ` ${bold().white('@pika/init')} installing dev dependencies...`,
     }).start()
     shell.exec(
       `cd ${appDirectory} && ${appConfig.commands['install -D'].exec}`,
@@ -117,15 +115,13 @@ export const run = async () => {
     .allowUnknownOption()
     .on('--help', () => {
       console.log(`\nExamples: `)
-      console.log(`  $ create-pika-app --template app-preact my-new-app `)
-      console.log(`  $ create-pika-app my-new-app `)
+      console.log(`  $ pika-init --template app-preact my-new-app `)
+      console.log(`  $ pika-init my-new-app `)
       console.log(
         `\n    If you have any problems, do not hesitate to file an issue:`
       )
       console.log(
-        `      ${cyan(
-          'https://github.com/ndom91/create-pika-app/issues/new'
-        )}\n`
+        `      ${cyan('https://github.com/pikapkg/init/issues/new')}\n`
       )
     })
     .parse(process.argv)
@@ -144,7 +140,10 @@ export const run = async () => {
       `No template chosen, please make a choice for ${cyan(appName)}\n`
     )
     const output = []
-    const templates = fs.readdirSync(`${process.cwd()}/assets`)
+    const templateDirectoryLoc = url.fileURLToPath(
+      url.resolve(import.meta.url, `../assets`)
+    )
+    const templates = fs.readdirSync(templateDirectoryLoc)
     templates.forEach(template => {
       output.push(template)
     })
@@ -175,7 +174,7 @@ export const run = async () => {
   if (!success && typeof appName !== undefined) {
     console.log(
       bold().red(
-        'Something went wrong while trying to create a new Preact app using create-pika-app'
+        'Something went wrong while trying to create a new Preact app using @pika/init'
       )
     )
     return false
