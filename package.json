@@ -7,9 +7,8 @@
     "prettier": "prettier --write **/*.{js,ts,tsx,json,css,scss,md,yml}",
     "lint": "eslint -c ./.eslintrc.js --ext .js,.jsx src/*",
     "test": "npm run prettier && npm run lint",
-    "build": "rm -rf pkg && pika build",
-    "publish": "pika publish",
-    "version": "npx @pika/pack"
+    "build": "pika build",
+    "publish": "pika publish"
   },
   "repository": {
     "type": "git",
