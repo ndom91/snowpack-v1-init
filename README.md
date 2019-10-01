@@ -1,14 +1,15 @@
 # 📦✨ @pika/init
 
-> Bootstrap a [`@pikapkg/web`](https://github.com/pikapkg/web) application in no time!
+Start a bundler-free  [`@pika/web`](https://github.com/pikapkg/web) web application with a single command!  
+Previously released as `create-pika-app`, created by [@ndom91](https://github.com/ndom91)
 
 ![Usage Gif](cpa.gif)
 
 ## 🛫 Quick Start
 
 ```js
-npx pika-init awesome-new-app --template app-preact
-cd awesome-new-app
+npx @pika/init awesome-new-app-directory
+cd awesome-new-app-directory
 npm run dev
 ```
 
@@ -17,7 +18,7 @@ The example application will then be available at [`localhost:5000`](http://127.
 ## 💻 Usage
 
 ```js
-Usage: pika-init --template [template] <project-name>
+Usage: npx @pika/init --template [template] <project-name>
 
 Options:
   -V, --version              output the version number
@@ -25,9 +26,9 @@ Options:
   -h, --help                 output usage information
 
 Examples:
-  $ pika-init --template app-preact my-new-app
-  $ pika-init --template app-lit my-new-app
-  $ pika-init my-new-app
+  $ npx @pika/init --template app-preact my-new-app
+  $ npx @pika/init --template app-lit my-new-app
+  $ npx @@pika/init my-new-app
 ```
 
 ## 🌲 Templates
@@ -88,12 +89,6 @@ To test execution of the binary:
    `node pkg/dist-node/index.bin.js generated-test-app-name`
 
 5. Fork, commit & push your changes, and then make a pull request back to this repository!
-
-### 🙏 Special Thanks
-
-[`@pika/web`](https://pika.dev)  
-[`@pika/pkg`](https://pika.dev)  
-[`preact`](https://preactjs.com)
 
 ---
 
