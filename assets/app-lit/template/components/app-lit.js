@@ -5,13 +5,13 @@ import './todo-footer.js';
 export class AppLit extends LitElement {
     static get properties() {
         return {
-            todo: { type: Array }
+            todos: { type: Array }
         }
     }
 
     constructor() {
         super();
-        this.todo = [];
+        this.todos = [];
     }
     
     static get styles() {
@@ -41,14 +41,14 @@ export class AppLit extends LitElement {
     }
 
     addTodo() {
-        this.todo = [...this.todo, `Item ${this.todo.length}`];
+        this.todos = [...this.todos, `Item ${this.todos.length}`];
     }
 
     render() {
         return html`
             ${header("Todo list")}
             <ul>
-                ${this.todo.map(item => html`
+                ${this.todos.map(item => html`
                     <li>${item}</li>
                 `)}
             </ul>
