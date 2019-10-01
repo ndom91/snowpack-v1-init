@@ -174,7 +174,7 @@ export const run = async () => {
   if (!success && typeof appName !== undefined) {
     console.log(
       bold().red(
-        'Something went wrong while trying to create a new Preact app using @pika/init'
+        'Something went wrong while trying to create a new Pika app using @pika/init'
       )
     )
     return false
