@@ -136,9 +136,6 @@ export const run = async () => {
   }
 
   if (!program.template) {
-    console.log(
-      `No template chosen, please make a choice for ${cyan(appName)}\n`
-    )
     const output = []
     const templateDirectoryLoc = url.fileURLToPath(
       url.resolve(import.meta.url, `../assets`)
