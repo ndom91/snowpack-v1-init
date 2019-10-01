@@ -15,6 +15,9 @@
     "type": "git",
     "url": "git+https://github.com/pikapkg/init.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "authors": [
     "Nico Domino <hi@ni.co.de>"
   ],
