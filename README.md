@@ -28,7 +28,7 @@ Options:
 Examples:
   $ npx @pika/init --template app-preact my-new-app
   $ npx @pika/init --template app-lit my-new-app
-  $ npx @@pika/init my-new-app
+  $ npx @pika/init my-new-app
 ```
 
 ## 🌲 Templates
