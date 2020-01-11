@@ -1,6 +1,6 @@
 # 🖥️ create-pika-app
 
-#### 🎉 `@Pika/Web` + `Preact` + `Typescript` + `Babel` Example Project
+#### 🎉 snowpack + Preact + Typescript Starter
 
 ![screenshot1](terminal.gif)
 
@@ -11,13 +11,24 @@ npm install
 npm run dev
 ```
 
-It will then be available at `localhost:5000`
+It will then be available at `localhost:5000`.
+
+## Production builds
+
+For production-optimized builds, get your server to run:
+
+```bash
+npm run build
+npm start
+```
+
+_Note: this will work on some hosts like [ZEIT Now](https://zeit.co) automatically._
 
 ### 🙏 Special Thanks
 
-[@pika/web](https://github.com/pikapkg/web)  
-[preact](https://github.com/preactjs/preact)  
-[dangodev/pika-web-preact](https://github.com/dangodev/pika-web-preact)
+[snowpack](https://github.com/pikapkg/snowpack)
+[preact](https://github.com/preactjs/preact)
+[dangodev/snowpack-preact-ts](https://github.com/dangodev/snowpack-preact-ts)
 [create-pika-app](https://github.com/ndom91/create-pika-app)
 
 ---

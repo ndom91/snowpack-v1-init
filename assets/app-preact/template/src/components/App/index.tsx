@@ -1,7 +1,7 @@
-import { h } from 'preact'
-import Terminal from '../Terminal'
+import { h, FunctionalComponent } from '/web_modules/preact.js'
+import Terminal from '../Terminal/index.js'
 
-const App: preact.FunctionalComponent = () => (
+const App: FunctionalComponent = () => (
   <div>
     <Terminal />
   </div>

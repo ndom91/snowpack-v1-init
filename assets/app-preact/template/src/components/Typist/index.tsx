@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h, Component } from '/web_modules/preact.js'
 
 type TypistType = {
   file: string
