@@ -1,6 +1,6 @@
 # 📦✨ snowpack-init
 
-Start a bundler-free  [`Snowpack`](https://www.snowpack.dev) web application with a single command!  
+Start a bundler-free [`Snowpack`](https://www.snowpack.dev) web application with a single command!
 
 ![Usage Gif](cpa.gif)
 
@@ -25,9 +25,9 @@ Options:
   -h, --help                 output usage information
 
 Examples:
-  $ npx @pika/init --template app-preact my-new-app
-  $ npx @pika/init --template app-lit my-new-app
-  $ npx @pika/init my-new-app
+  $ npx snowpack-init --template app-preact my-new-app
+  $ npx snowpack-init --template app-lit my-new-app
+  $ npx snowpack-init my-new-app
 ```
 
 ## 🌲 Templates
@@ -67,7 +67,6 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 - lit-html
 - Basic To do List Example
 - Thanks: [`@thepassle`](https://github.com/thepassle)
-
 
 3. `Your next app` 😎
 

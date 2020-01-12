@@ -13,7 +13,7 @@ const createPikaApp = appName => {
     if (appName) {
       if (path.isAbsolute(appName)) {
         shell.exec(`mkdir ${appName} > /dev/null`, () => {
-          console.log(green().bold('\nWelcome to @pika/init ✨\n'))
+          console.log(green().bold('\nWelcome to snowpack-init ✨\n'))
           console.log(`Creating app: ${cyan().bold(appName)}`)
           resolve(true)
         })
@@ -21,7 +21,7 @@ const createPikaApp = appName => {
         shell.exec(
           `cd ${process.cwd()} && mkdir ${appName} > /dev/null`,
           () => {
-            console.log(green().bold('\nWelcome to @pika/init ✨\n'))
+            console.log(green().bold('\nWelcome to snowpack-init ✨\n'))
             console.log(`Creating app: ${cyan().bold(appName)}`)
             resolve(true)
           }
@@ -73,7 +73,7 @@ const copyTemplates = (appDirectory, appTemplateLoc) => {
 const installDependencies = (appDirectory, appConfig) => {
   return new Promise(resolve => {
     const installDepSpinner = ora({
-      text: ` ${bold().white('@pika/init')} installing dependencies...`,
+      text: ` ${bold().white('snowpack-init')} installing dependencies...`,
     }).start()
     shell.exec(
       `cd ${appDirectory} && ${appConfig.commands['install'].exec}`,
@@ -88,7 +88,7 @@ const installDependencies = (appDirectory, appConfig) => {
 const installDevDependencies = (appDirectory, appConfig) => {
   return new Promise(resolve => {
     const installDevDepSpinner = ora({
-      text: ` ${bold().white('@pika/init')} installing dev dependencies...`,
+      text: ` ${bold().white('snowpack-init')} installing dev dependencies...`,
     }).start()
     shell.exec(
       `cd ${appDirectory} && ${appConfig.commands['install -D'].exec}`,
@@ -171,7 +171,7 @@ export const run = async () => {
   if (!success && typeof appName !== undefined) {
     console.log(
       bold().red(
-        'Something went wrong while trying to create a new Pika app using @pika/init'
+        'Something went wrong while trying to create a new Pika app using snowpack-init'
       )
     )
     return false
