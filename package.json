@@ -1,8 +1,7 @@
 {
-  "name": "@pika/init",
+  "name": "snowpack-init",
   "version": "2.1.0",
-  "description": "Bootstrap a Pika + Preact/Vue/Typescript/etc. application without the hassle!",
-  "main": "index.js",
+  "description": "Bootstrap a Snowpack application without the hassle!",
   "scripts": {
     "prettier": "prettier --write **/*.{js,ts,tsx,json,css,scss,md,yml}",
     "lint": "eslint -c ./.eslintrc.js --ext .js,.jsx src/*",
@@ -13,19 +12,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pikapkg/init.git"
+    "url": "git+https://github.com/pikapkg/snowpack-init.git"
   },
   "publishConfig": {
     "access": "public"
   },
   "authors": [
+    "Fred Schott <fkschott@gmail.com>",
     "Nico Domino <hi@ni.co.de>"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pikapkg/init/issues"
+    "url": "https://github.com/pikapkg/snowpack-init/issues"
   },
-  "homepage": "https://github.com/pikapkg/init#readme",
+  "homepage": "https://github.com/pikapkg/snowpack-init#readme",
   "dependencies": {
     "commander": "^3.0.0",
     "inquirer": "^7.0.0",
@@ -38,8 +38,10 @@
   "keywords": [
     "preact",
     "pika",
-    "toolbox",
+    "snowpack",
+    "init",
     "create-react-app",
+    "bootstrap",
     "bootstrapping"
   ],
   "devDependencies": {
