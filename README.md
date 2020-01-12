@@ -60,7 +60,7 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 
 3. `app-lit`
 
-<img width="500px" src="https://i.imgur.com/f3oYQJS.png" align="right"></img>
+<img width="500px" src="https://imgur.com/FpyU0Eg.png" align="right"></img>
 
 - LitElement
 - lit-html

@@ -2,7 +2,7 @@ import {LitElement, html, css} from '../web_modules/lit-element.js';
 import { header } from './todo-header.js';
 import './todo-footer.js';
 
-export class AppLit extends LitElement {
+export class LitSnowpack extends LitElement {
     static get properties() {
         return {
             todos: { type: Array }

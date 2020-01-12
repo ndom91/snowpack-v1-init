@@ -1,13 +1,18 @@
 {
     "packageManifest": {
-        "@pika/web": {
+        "snowpack": {
             "webDependencies": [
                 "lit-html",
-                "lit-element"
+                "lit-element",
+                "lit-html/directives/until.js"
+            ],
+            "dedupe": [
+                "lit-element",
+                "lit-html"
             ]
-        },
+          },
         "scripts": {
-            "prepare": "pika-web --clean",
+            "prepare": "snowpack --include './js/index.js'",
             "start": "serve ./"
         }
     },
@@ -16,7 +21,7 @@
             "exec": "npm install --silent --save lit-html lit-element > /dev/null"
         },
         "install -D": {
-            "exec": "npm install --silent -D @pika/web serve > /dev/null"
+            "exec": "npm install --silent -D snowpack serve > /dev/null"
         }
     }
 }

@@ -1,3 +1,3 @@
-import { AppLit } from '../components/app-lit.js';
+import { LitSnowpack } from '../components/lit-snowpack.js';
 
-window.customElements.define('app-lit', AppLit);
+window.customElements.define('lit-snowpack', LitSnowpack);
