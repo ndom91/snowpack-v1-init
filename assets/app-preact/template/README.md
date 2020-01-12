@@ -29,7 +29,6 @@ _Note: this will work on some hosts like [ZEIT Now](https://zeit.co) automatical
 [snowpack](https://github.com/pikapkg/snowpack)
 [preact](https://github.com/preactjs/preact)
 [dangodev/snowpack-preact-ts](https://github.com/dangodev/snowpack-preact-ts)
-[create-pika-app](https://github.com/ndom91/create-pika-app)
 
 ---
 

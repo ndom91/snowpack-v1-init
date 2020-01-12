@@ -1,14 +1,13 @@
 # 📦✨ @pika/init
 
 Start a bundler-free  [`Snowpack`](https://www.snowpack.dev) web application with a single command!  
-Previously released as `create-pika-app`, created by [@ndom91](https://github.com/ndom91)
 
 ![Usage Gif](cpa.gif)
 
 ## 🛫 Quick Start
 
 ```js
-npx @pika/init awesome-new-app-directory
+npx snowpack-init awesome-new-app-directory
 cd awesome-new-app-directory
 npm run dev
 ```
@@ -18,7 +17,7 @@ The example application will then be available at [`localhost:5000`](http://127.
 ## 💻 Usage
 
 ```js
-Usage: npx @pika/init --template [template] <project-name>
+Usage: npx snowpack-init --template [template] <project-name>
 
 Options:
   -V, --version              output the version number
