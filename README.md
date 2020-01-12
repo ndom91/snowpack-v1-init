@@ -1,4 +1,4 @@
-# 📦✨ @pika/init
+# 📦✨ snowpack-init
 
 Start a bundler-free  [`Snowpack`](https://www.snowpack.dev) web application with a single command!  
 
