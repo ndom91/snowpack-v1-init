@@ -1,13 +1,13 @@
 {
   "packageManifest": {
-    "@pika/web": {
+    "snowpack": {
       "webDependencies": [
         "vue/dist/vue.esm.browser.js",
         "http-vue-loader/src/httpVueLoader.js"
       ]
     },
     "scripts": {
-      "prepare": "pika-web --clean",
+      "prepare": "npx snowpack --clean",
       "start": "serve ./"
     }
   },
@@ -16,7 +16,7 @@
       "exec": "npm install --silent --save http-vue-loader vue > /dev/null"
     },
     "install -D": {
-      "exec": "npm install --silent -D @pika/web serve > /dev/null"
+      "exec": "npm install --silent -D snowpack serve > /dev/null"
     }
   }
 }
