@@ -1,6 +1,6 @@
 # 📦✨ @pika/init
 
-Start a bundler-free  [`@pika/web`](https://github.com/pikapkg/web) web application with a single command!  
+Start a bundler-free  [`Snowpack`](https://www.snowpack.dev) web application with a single command!  
 Previously released as `create-pika-app`, created by [@ndom91](https://github.com/ndom91)
 
 ![Usage Gif](cpa.gif)
@@ -39,6 +39,7 @@ Examples:
 
 Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal-homepage) built on the following stack:
 
+- Snowpack
 - Preact
 - Preact-router
 - Preact-emotion
@@ -46,12 +47,12 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 - Babel
 - ESLint
 - Prettier
-- @Pika/Web
 
 2. `app-vue`
 
 <img width="500px" src="https://imgur.com/A2msrQA.png" align="right"></img>
 
+- Snowpack
 - Vue
 - http-vue-Loader
 - Basic todo list example
@@ -62,6 +63,7 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 
 <img width="500px" src="https://imgur.com/FpyU0Eg.png" align="right"></img>
 
+- Snowpack
 - LitElement
 - lit-html
 - Basic To do List Example
