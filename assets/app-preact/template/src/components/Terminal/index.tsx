@@ -1,7 +1,7 @@
-import { h } from 'preact'
-import Console from '../Console'
+import { h, FunctionalComponent } from '/web_modules/preact.js'
+import Console from '../Console/index.js'
 
-const Terminal: preact.FunctionalComponent = () => (
+const Terminal: FunctionalComponent = () => (
   <div className="terminal-window">
     <header>
       <div className="button red" />
