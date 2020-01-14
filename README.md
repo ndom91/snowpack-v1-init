@@ -75,6 +75,7 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 - Babel
 - ESLint
 - PostCSS
+- Thanks: [`@karlprieb`](https://github.com/karlprieb)
 
 5. `Your next app` 😎
 
