@@ -68,7 +68,16 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 - Basic To do List Example
 - Thanks: [`@thepassle`](https://github.com/thepassle)
 
-3. `Your next app` 😎
+4. `app-typescript` 
+
+- Snowpack
+- Typescript
+- Babel
+- ESLint
+- PostCSS
+- Thanks: [`@karlprieb`](https://github.com/karlprieb)
+
+5. `Your next app` 😎
 
 If you'd like to have your project included here, just open a PR and we'll take a look!
 
