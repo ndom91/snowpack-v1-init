@@ -5,7 +5,7 @@
     },
     "scripts": {
       "build": "npm run build:ts && npm run build:esm && npm run copy",
-      "build:esm": "npx snowpack --dest dist/web_modules --optimize",
+      "build:esm": "snowpack --dest dist/web_modules --optimize",
       "build:ts": "rm -rf dist && tsc",
       "build:ts:watch": "tsc -w",
       "copy": "copyfiles 'src/*.html' 'src/**/*.gif' 'src/*.css' dist -u 1",
@@ -20,7 +20,7 @@
       "exec": "npm install --silent --save preact > /dev/null"
     },
     "install -D": {
-      "exec": "npm install --silent -D @typescript-eslint/eslint-plugin @typescript-eslint/parser concurrently copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve typescript > /dev/null"
+      "exec": "npm install --silent -D @typescript-eslint/eslint-plugin @typescript-eslint/parser concurrently copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve snowpack typescript > /dev/null"
     }
   }
 }
