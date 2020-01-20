@@ -83,7 +83,7 @@
       [
         "@pika/plugin-simple-bin",
         {
-          "bin": "pika-init"
+          "bin": "snowpack-init"
         }
       ]
     ]
