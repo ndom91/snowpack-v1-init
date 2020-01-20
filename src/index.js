@@ -158,7 +158,7 @@ export const run = async () => {
     })
   }
 
-  let appDirectory = `${process.cwd()}/${appName}`
+  let appDirectory = path.resolve(`${process.cwd()}/${appName}`)
   if (typeof appname === 'string' && path.isAbsolute(appName)) {
     appDirectory = appName
   }
