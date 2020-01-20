@@ -7,7 +7,7 @@
       ]
     },
     "scripts": {
-      "prepare": "npx snowpack --clean",
+      "prepare": "snowpack --clean",
       "start": "serve ./"
     }
   },
