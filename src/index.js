@@ -12,20 +12,17 @@ const createPikaApp = appName => {
   return new Promise(resolve => {
     if (appName) {
       if (path.isAbsolute(appName)) {
-        shell.exec(`mkdir ${appName} > /dev/null`, () => {
+        shell.exec(`mkdir ${appName}`, () => {
           console.log(green().bold('\nWelcome to snowpack-init ✨\n'))
           console.log(`Creating app: ${cyan().bold(appName)}`)
           resolve(true)
         })
       } else {
-        shell.exec(
-          `cd ${process.cwd()} && mkdir ${appName} > /dev/null`,
-          () => {
-            console.log(green().bold('\nWelcome to snowpack-init ✨\n'))
-            console.log(`Creating app: ${cyan().bold(appName)}`)
-            resolve(true)
-          }
-        )
+        shell.exec(`cd ${process.cwd()} && mkdir ${appName}`, () => {
+          console.log(green().bold('\nWelcome to snowpack-init ✨\n'))
+          console.log(`Creating app: ${cyan().bold(appName)}`)
+          resolve(true)
+        })
       }
     }
   })
@@ -33,7 +30,7 @@ const createPikaApp = appName => {
 
 const initApp = (appDirectory, appConfig) => {
   return new Promise(resolve => {
-    shell.exec(`cd ${appDirectory} && npm init --yes > /dev/null`, () => {
+    shell.exec(`cd ${appDirectory} && npm init --yes`, () => {
       const packaged = jsonfile.readFileSync(
         path.resolve(`${appDirectory}/package.json`)
       )
