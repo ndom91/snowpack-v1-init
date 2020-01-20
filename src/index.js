@@ -115,8 +115,8 @@ export const run = async () => {
     .allowUnknownOption()
     .on('--help', () => {
       console.log(`\nExamples: `)
-      console.log(`  $ pika-init --template app-preact my-new-app `)
-      console.log(`  $ pika-init my-new-app `)
+      console.log(`  $ snowpack-init --template app-preact my-new-app `)
+      console.log(`  $ snowpack-init my-new-app `)
       console.log(
         `\n    If you have any problems, do not hesitate to file an issue:`
       )
