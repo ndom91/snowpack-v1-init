@@ -34,9 +34,11 @@ const createPikaApp = appName => {
 const initApp = (appDirectory, appConfig) => {
   return new Promise(resolve => {
     shell.exec(`cd ${appDirectory} && npm init --yes > /dev/null`, () => {
-      const packaged = jsonfile.readFileSync(`${appDirectory}/package.json`)
+      const packaged = jsonfile.readFileSync(
+        path.resolve(`${appDirectory}/package.json`)
+      )
       jsonfile.writeFileSync(
-        `${appDirectory}/package.json`,
+        path.resolve(`${appDirectory}/package.json`),
         {
           ...packaged,
           ...appConfig.packageManifest,
