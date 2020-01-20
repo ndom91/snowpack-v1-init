@@ -160,7 +160,7 @@ export const run = async () => {
 
   let appDirectory = path.resolve(`${process.cwd()}/${appName}`)
   if (typeof appname === 'string' && path.isAbsolute(appName)) {
-    appDirectory = appName
+    appDirectory = path.resolve(appName)
   }
 
   let success = await createPikaApp(appName)
