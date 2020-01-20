@@ -36,10 +36,10 @@
   },
   "commands": {
     "install": {
-      "exec": "npm install --silent --save ramda > /dev/null"
+      "exec": "npm install --silent --save ramda"
     },
     "install -D": {
-      "exec": "npm install --silent -D @babel/cli @babel/core @babel/helper-plugin-utils @babel/preset-typescript @types/jest @types/ramda @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-add-import-extension browser-sync commitizen cpx cssnano cz-conventional-changelog eslint eslint-config-prettier eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-prettier eslint-plugin-promise eslint-plugin-standard filesize glob html-minifier jest normalize.css npm-run-all postcss-cli postcss-import postcss-nested postcss-simple-vars prettier rimraf snowpack terser ts-jest typescript > /dev/null"
+      "exec": "npm install --silent -D @babel/cli @babel/core @babel/helper-plugin-utils @babel/preset-typescript @types/jest @types/ramda @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-add-import-extension browser-sync commitizen cpx cssnano cz-conventional-changelog eslint eslint-config-prettier eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-prettier eslint-plugin-promise eslint-plugin-standard filesize glob html-minifier jest normalize.css npm-run-all postcss-cli postcss-import postcss-nested postcss-simple-vars prettier rimraf snowpack terser ts-jest typescript"
     }
   }
 }

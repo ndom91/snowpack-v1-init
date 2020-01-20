@@ -18,11 +18,10 @@
     },
     "commands": {
         "install": {
-            "exec": "npm install --silent --save lit-html lit-element > /dev/null"
+            "exec": "npm install --silent --save lit-html lit-element"
         },
         "install -D": {
-            "exec": "npm install --silent -D snowpack serve > /dev/null"
+            "exec": "npm install --silent -D snowpack serve"
         }
     }
 }
-  

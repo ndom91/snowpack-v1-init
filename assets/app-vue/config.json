@@ -13,10 +13,10 @@
   },
   "commands": {
     "install": {
-      "exec": "npm install --silent --save http-vue-loader vue > /dev/null"
+      "exec": "npm install --silent --save http-vue-loader vue"
     },
     "install -D": {
-      "exec": "npm install --silent -D snowpack serve > /dev/null"
+      "exec": "npm install --silent -D snowpack serve"
     }
   }
 }
