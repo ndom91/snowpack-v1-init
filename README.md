@@ -2,7 +2,7 @@
 
 Start a bundler-free [`Snowpack`](https://www.snowpack.dev) web application with a single command!
 
-![Usage Gif](cpa.gif)
+![Usage Gif](https://imgur.com/eoLXgYq.gif)
 
 ## 🛫 Quick Start
 
