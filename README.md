@@ -68,7 +68,7 @@ Slimmed down version of [`terminal-homepage`](https://github.com/ndom91/terminal
 - Basic To do List Example
 - Thanks: [`@thepassle`](https://github.com/thepassle)
 
-4. `app-typescript` 
+4. `app-typescript`
 
 - Snowpack
 - Typescript
