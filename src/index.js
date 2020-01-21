@@ -12,20 +12,17 @@ const createPikaApp = appName => {
   return new Promise(resolve => {
     if (appName) {
       if (path.isAbsolute(appName)) {
-        shell.exec(`mkdir ${appName} > /dev/null`, () => {
+        shell.exec(`mkdir ${appName}`, () => {
           console.log(green().bold('\nWelcome to snowpack-init ✨\n'))
           console.log(`Creating app: ${cyan().bold(appName)}`)
           resolve(true)
         })
       } else {
-        shell.exec(
-          `cd ${process.cwd()} && mkdir ${appName} > /dev/null`,
-          () => {
-            console.log(green().bold('\nWelcome to snowpack-init ✨\n'))
-            console.log(`Creating app: ${cyan().bold(appName)}`)
-            resolve(true)
-          }
-        )
+        shell.exec(`cd ${process.cwd()} && mkdir ${appName}`, () => {
+          console.log(green().bold('\nWelcome to snowpack-init ✨\n'))
+          console.log(`Creating app: ${cyan().bold(appName)}`)
+          resolve(true)
+        })
       }
     }
   })
@@ -33,10 +30,12 @@ const createPikaApp = appName => {
 
 const initApp = (appDirectory, appConfig) => {
   return new Promise(resolve => {
-    shell.exec(`cd ${appDirectory} && npm init --yes > /dev/null`, () => {
-      const packaged = jsonfile.readFileSync(`${appDirectory}/package.json`)
+    shell.exec(`cd ${appDirectory} && npm init --yes`, () => {
+      const packaged = jsonfile.readFileSync(
+        path.resolve(`${appDirectory}/package.json`)
+      )
       jsonfile.writeFileSync(
-        `${appDirectory}/package.json`,
+        path.resolve(`${appDirectory}/package.json`),
         {
           ...packaged,
           ...appConfig.packageManifest,
@@ -159,9 +158,9 @@ export const run = async () => {
     })
   }
 
-  let appDirectory = `${process.cwd()}/${appName}`
+  let appDirectory = path.resolve(`${process.cwd()}/${appName}`)
   if (typeof appname === 'string' && path.isAbsolute(appName)) {
-    appDirectory = appName
+    appDirectory = path.resolve(appName)
   }
 
   let success = await createPikaApp(appName)

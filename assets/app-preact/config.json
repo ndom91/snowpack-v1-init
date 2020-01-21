@@ -6,21 +6,21 @@
     "scripts": {
       "build": "npm run build:ts && npm run build:esm && npm run copy",
       "build:esm": "snowpack --dest dist/web_modules --optimize",
-      "build:ts": "rm -rf dist && tsc",
+      "build:ts": "rimraf dist && tsc",
       "build:ts:watch": "tsc -w",
-      "copy": "copyfiles 'src/*.html' 'src/**/*.gif' 'src/*.css' dist -u 1",
-      "dev": "npm run build && concurrently 'npm run build:ts:watch' 'serve -s dist'",
-      "lint": "eslint --ext .ts,.tsx src --ignore 'web_modules/**/*.js'",
+      "copy": "copyfiles \"src/*.html\" \"src/**/*.gif\" \"src/*.css\" dist -u 1",
+      "dev": "npm run build && concurrently \"npm run build:ts:watch\" \"serve -s dist\"",
+      "lint": "eslint --ext .ts,.tsx src --ignore \"web_modules/**/*.js\"",
       "prestart": "npm run build",
       "start": "serve -s dist"
     }
   },
   "commands": {
     "install": {
-      "exec": "npm install --silent --save preact > /dev/null"
+      "exec": "npm install --silent --save preact"
     },
     "install -D": {
-      "exec": "npm install --silent -D @typescript-eslint/eslint-plugin @typescript-eslint/parser concurrently copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react serve snowpack typescript > /dev/null"
+      "exec": "npm install --silent -D @typescript-eslint/eslint-plugin @typescript-eslint/parser concurrently copyfiles prettier eslint eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react rimraf serve snowpack typescript"
     }
   }
 }
