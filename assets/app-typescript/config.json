@@ -5,12 +5,12 @@
     },
     "scripts": {
       "prestart": "run-s -l clean:build ",
-      "start": "run-p -l snowpack build:ts:watch build:styles:watch copy:assets:watch copy:modules:watch browsersync",
+      "start": "run-p -l build:ts:watch build:styles:watch copy:assets:watch copy:modules:watch browsersync",
       "prebuild": "run-s -l clean:build",
       "build": "run-p -l build:dependencies build:ts build:styles copy:assets",
       "postbuild": "run-s -l copy:modules minify:all",
-      "build:ts": "babel src --out-dir build --extensions '.ts'",
-      "build:ts:watch": "babel --watch src --out-dir build --extensions '.ts'",
+      "build:ts": "babel src --out-dir build --extensions \".ts\"",
+      "build:ts:watch": "babel --watch src --out-dir build --extensions \".ts\"",
       "build:styles": "postcss src/styles/main.pcss -o build/styles.css --no-map",
       "build:styles:watch": "postcss src/styles/main.pcss -o build/styles.css -w",
       "build:dependencies": "snowpack --optimize --include \"src/**/*.ts\"",
@@ -23,16 +23,15 @@
       "test:unit:coverage": "jest --coverage",
       "copy:assets": "cpx \"public/*\"  build",
       "copy:assets:watch": "cpx \"public/*\"  build -w",
-      "copy:modules": "cpx \"web_modules/*.js\" build/web_modules",
-      "copy:modules:watch": "cpx \"web_modules/*.js\" build/web_modules -w",
+      "copy:modules": "cpx \"web_modules/*.js\" \"build/web_modules\"",
+      "copy:modules:watch": "snowpack --include \"src/**/*.ts\" --clean && cpx \"web_modules/*.js\" \"build/web_modules\" -w",
       "minify:js": "node minify.js js",
       "minify:html": "node minify.js html",
       "minify:all": "node minify.js js html",
       "clean:build": "rimraf build",
-      "browsersync": "browser-sync start -s 'build' -f 'build'",
-      "commit": "git-cz",
-      "snowpack": "snowpack --include \"src/**/*.ts\" --clean"
-    }
+      "browsersync": "browser-sync start -s \"build\" -f \"build\"",
+      "commit": "git-cz"
+    },
   },
   "commands": {
     "install": {
