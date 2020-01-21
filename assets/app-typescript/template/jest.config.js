@@ -1,9 +1,9 @@
 module.exports = {
-  preset: "ts-jest",
+  preset: 'ts-jest',
   testEnvironment: 'node',
   moduleNameMapper: {
-    "/web_modules/(.*)": "<rootDir>/web_modules/$1"
+    '/web_modules/(.*)': '<rootDir>/web_modules/$1',
   },
-  testMatch: ["**/?(*.)spec.ts"],
-  coverageReporters: ['text', 'html']
+  testMatch: ['**/?(*.)spec.ts'],
+  coverageReporters: ['text', 'html'],
 }
