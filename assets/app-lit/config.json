@@ -1,28 +1,24 @@
 {
-    "packageManifest": {
-        "snowpack": {
-            "webDependencies": [
-                "lit-html",
-                "lit-element",
-                "lit-html/directives/until.js"
-            ],
-            "dedupe": [
-                "lit-element",
-                "lit-html"
-            ]
-          },
-        "scripts": {
-            "prepare": "snowpack --include './js/index.js'",
-            "start": "serve ./"
-        }
+  "packageManifest": {
+    "snowpack": {
+      "webDependencies": [
+        "lit-html",
+        "lit-element",
+        "lit-html/directives/until.js"
+      ],
+      "dedupe": ["lit-element", "lit-html"]
     },
-    "commands": {
-        "install": {
-            "exec": "npm install --silent --save lit-html lit-element > /dev/null"
-        },
-        "install -D": {
-            "exec": "npm install --silent -D snowpack serve > /dev/null"
-        }
+    "scripts": {
+      "prepare": "snowpack --include './js/index.js'",
+      "start": "serve ./"
     }
+  },
+  "commands": {
+    "install": {
+      "exec": "npm install --silent --save lit-html lit-element > /dev/null"
+    },
+    "install -D": {
+      "exec": "npm install --silent -D snowpack serve > /dev/null"
+    }
+  }
 }
-  
