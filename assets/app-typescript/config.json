@@ -31,7 +31,7 @@
       "clean:build": "rimraf build",
       "browsersync": "browser-sync start -s \"build\" -f \"build\"",
       "commit": "git-cz"
-    },
+    }
   },
   "commands": {
     "install": {
