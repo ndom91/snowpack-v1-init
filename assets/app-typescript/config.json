@@ -24,7 +24,7 @@
       "copy:assets": "cpx \"public/*\"  build",
       "copy:assets:watch": "cpx \"public/*\"  build -w",
       "copy:modules": "cpx \"web_modules/*.js\" \"build/web_modules\"",
-      "copy:modules:watch": "snowpack --include \"src/**/*.ts\" --clean && cpx \"web_modules/*.js\" \"build/web_modules\" -w",
+      "copy:modules:watch": "snowpack --include \"src/**/*.ts\" --clean && cpx \"web_modules/**/*.js\" \"build/web_modules\" -w",
       "minify:js": "node minify.js js",
       "minify:html": "node minify.js html",
       "minify:all": "node minify.js js html",
