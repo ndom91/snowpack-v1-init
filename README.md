@@ -84,7 +84,7 @@ If you'd like to have your project included here, just open a PR and we'll take 
 ## 🚧 Contributing
 
 1. Clone the repo  
-   `git clone https://github.com/pikapkg/snowpack-init.git snowpack-init`
+   `git clone https://github.com/ndom91/snowpack-init.git snowpack-init`
 
 2. Install the project  
    `cd snowpack-init && npm install`
@@ -101,4 +101,6 @@ To test execution of the binary:
 
 ---
 
-📝 `Licence`[`MIT`](https://opensource.org/licenses/MIT)
+### 📝 Licence
+
+[`MIT`](https://opensource.org/licenses/MIT)
