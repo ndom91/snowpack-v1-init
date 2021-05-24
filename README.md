@@ -1,3 +1,6 @@
+> **DEPRECATED** - This was the init-cli for the original snowpack release.  
+> There has been a rewrite which resulted in the currently supported [`create-snowpack-app`](https://github.com/snowpackjs/snowpack/tree/main/create-snowpack-app/cli).
+
 # 📦✨ snowpack-init
 
 Start a bundler-free [`Snowpack`](https://www.snowpack.dev) web application with a single command!
